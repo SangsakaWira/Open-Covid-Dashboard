@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../layout/head.ejs") %>
+
+<body>
+
+    <%- include("../layout/general-navbar.ejs") %>
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <%- include("../layout/general-sidebar") %>
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+                <h1 style="text-align: center;margin-top: 15px;">Tambah Pasien COVID-19</h1>
+
+                <% if(true){%>
+                <div class="row">
+                    <div id="flRegistrationForm" class="col-lg-12 layout-spacing">
+                        <form action="/pasienCovid/createPasien" method="POST">
+                            <div class="statbox widget mb-2 box box-shadow">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-4">
+                                          <label for="exampleFormControlFile1">Email Pasien</label>
+                                          <input type="email" class="form-control" name="email">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                          <label for="exampleFormControlFile1">Username Pasien</label>
+                                          <input type="text" class="form-control username-field" name="username">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                          <label for="exampleFormControlFile1">Password Pasien</label>
+                                          <input type="password" class="form-control password-field" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group mb-4">
+                                          <label for="exampleFormControlFile1">Email Pendamping</label>
+                                          <input type="email" class="form-control" name="email_pendamping">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                          <label for="exampleFormControlFile1">Username Pendamping</label>
+                                          <input type="text" class="form-control username-field" name="username_pendamping">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                          <label for="exampleFormControlFile1">Password Pendamping</label>
+                                          <input type="password" class="form-control password-field" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="statbox widget box box-shadow">
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Nama Lengkap</label>
+                                    <input type="text" class="form-control" name="nama">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Jenis Kelamin</label>
+                                    <select class="form-control basic" name="jenis_kelamin">
+                                        <option selected="selected" value="Pria">Pria</option>
+                                        <option value="Wanita">Wanita</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">No HP</label>
+                                    <input type="text" class="form-control" name="no_hp">
+                                </div>
+                                <div class="form-group mb-4 mt-3">
+                                    <label for="exampleFormControlFile1">Upload Photo</label>
+                                    <input type="file" class="form-control-file" >
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Nama Pendamping</label>
+                                    <input type="text" class="form-control" name="nama_pendamping">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">No HP Pendamping</label>
+                                    <input type="text" class="form-control" name="no_hp_pendamping">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Umur Pasien</label>
+                                    <input type="text" class="form-control" name="umur">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Berat Badan</label>
+                                    <input type="text" class="form-control" name="berat_badan">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Tinggi Badan</label>
+                                    <input type="text" class="form-control" name="tinggi_badan">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Alamat</label>
+                                    <input type="text" class="form-control" name="alamat">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Kabupaten/Kota</label>
+                                    <input type="text" class="form-control" name="kabupaten">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Kategori</label>
+                                    <select class="form-control basic" name="kategori">
+                                        <option selected="selected" value="ODP">ODP</option>
+                                        <option  value="OTG">OTG</option>
+                                        <option value="PDP">PDP</option>
+                                        <option value="Positif">Positif</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Tahap</label>
+                                    <select class="form-control basic" name="tahap">
+                                        <option selected="selected" value="Awal">Tahap Awal</option>
+                                        <option value="Lanjutan">Tahap Lanjutan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Batuk</label>
+                                    <select class="form-control basic" name="batuk">
+                                        <option selected="selected" value="tidak">Tidak</option>
+                                        <option value="iya">Iya</option>=
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Sesak Nafas</label>
+                                    <select class="form-control basic" name="sesak">
+                                        <option selected="selected" value="tidak">Tidak</option>
+                                        <option value="iya">Iya</option>=
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Lemas Badan</label>
+                                    <select class="form-control basic" name="lemas">
+                                        <option selected="selected" value="tidak">Tidak</option>
+                                        <option value="iya">Iya</option>=
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Mual</label>
+                                    <select class="form-control basic" name="mual">
+                                        <option selected="selected" value="tidak">Tidak</option>
+                                        <option value="iya">Iya</option>=
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Pusing</label>
+                                    <select class="form-control basic" name="pusing">
+                                        <option selected="selected" value="tidak">Tidak</option>
+                                        <option value="iya">Iya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Dewasa/Anak</label>
+                                    <select class="form-control basic" name="dewasa_anak">
+                                        <option selected="selected" value="dewasa">Dewasa</option>
+                                        <option value="anak">Anak</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Skala</label>
+                                    <select class="form-control basic" name="skala">
+                                        <option selected="selected" value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <br>
+                                    <label>* 1= Tidak ada gejala; 2= Batuk Ringan; 3= Lemas; 4= Susah Nafas; 5= Butuh Pertolongan</label>
+                                </div>
+                    
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Keterangan</label>
+                                    <textarea row=5 type="text" class="form-control" name="keterangan"></textarea>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Dokter</label>
+                                    <select class="form-control" name="dokter">
+                                      <% for (let i = 0; i < doctors.length; i++) { %>
+                                        <option value="<%= doctors[i]._id %>"><%= doctors[i].nama_lengkap %></option>
+                                      <% } %>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Keadaan Khusus</label>
+                                    <input type="text" class="form-control" name="keadaan_khusus"></input>
+                                    <br>
+                                    <label>* Diabetes, Hamil, Asma, TBC dan lainnya</label>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                                    <div class="widget widget-chart-one" style="height: 400px;">
+                                        <label>Mark Your Location</label>
+                                        <div id='mapMarker' style='width: 100%; height: 90%;'>
+                                            <pre id="coordinates" class="coordinates"></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" id="latitude" name="lat"
+                                        placeholder="Latitude">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" id="longitude" name="long"
+                                        placeholder="Longitude">
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <%- include("../layout/footer.ejs")%>
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="../assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="../bootstrap/js/popper.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="../assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="../plugins/table/datatable/datatables.js"></script>
+    <script>
+        $('#zero-config').DataTable({
+            "oLanguage": {
+                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "Showing page _PAGE_ of _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "Search...",
+                "sLengthMenu": "Results :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [7, 10, 20, 50],
+            "pageLength": 7
+        });
+    </script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZ3Nha2F3aXJhIiwiYSI6ImNqdXBhajZmeTBudXg0NG50YjdhcDF2amUifQ.NmC56k1T54xEKGmlrFOxRA';
+        var coordinates = document.getElementById('coordinates');
+        var mapMarker = new mapboxgl.Map({
+            container: 'mapMarker',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [104.179182, -3.139221],
+            zoom: 7
+        });
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([104.179182, -3.139221])
+            .addTo(mapMarker);
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML =
+                'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            document.getElementById("latitude").value = lngLat.lat
+            document.getElementById("longitude").value = lngLat.lng
+        }
+        marker.on('dragend', onDragEnd);
+
+        $('.username-field').keyup(function() {
+            var name = $(this).attr('name');
+            var value = $(this).val();
+            var el;
+            if (name === 'username') {
+              el = $('.password-field')[0];
+            } else {
+              el = $('.password-field')[1];
+            }
+            $(el).val(value)
+        })
+
+        $('.password-field').focus(function() {
+            $(this).attr('type', 'text');
+        });
+
+        $('.password-field').blur(function() {
+            $(this).attr('type', 'password');
+        });
+    </script>
+</body>
+
+</html>

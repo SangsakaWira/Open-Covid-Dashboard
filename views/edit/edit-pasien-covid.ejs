@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../layout/detail-head.ejs") %>
+
+<body>
+
+    <%- include("../layout/detail-navbar.ejs") %>
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <%- include("../layout/general-sidebar") %>
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+                <h1 style="text-align: center;margin-top: 15px;">Edit Pasien COVID-19</h1>
+
+                <% if(true){%>
+                <div class="row">
+                    <div id="flRegistrationForm" class="col-lg-12 layout-spacing">
+                        <div class="statbox widget box box-shadow">
+                            <form action="/pasienCovid/updatePasienById" method="POST">
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Nama Lengkap</label>
+                                    <input type="text" class="form-control" name="nama" value="<%= data.nama %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Jenis Kelamin: </label>
+                                    <label><%= data.jenis_kelamin %></label>
+                                    <select class="form-control basic" name="jenis_kelamin">
+                                        <option selected value="Pria">Pria</option>
+                                        <option value="Wanita">Wanita</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">No HP</label>
+                                    <input type="text" class="form-control" name="no_hp" value="<%= data.no_hp %>">
+                                </div>
+                                <div class="form-group mb-4 mt-3">
+                                    <label for="exampleFormControlFile1">Upload Photo</label>
+                                    <input type="file" class="form-control-file">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Nama Pendamping</label>
+                                    <input type="text" class="form-control" name="nama_pendamping" value="<%= data.nama_pendamping %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">No HP Pendamping</label>
+                                    <input type="text" class="form-control" name="no_hp_pendamping" value="<%= data.no_hp_pendamping %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Umur Pasien</label>
+                                    <input type="text" class="form-control" name="umur" value="<%= data.umur %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Berat Badan</label>
+                                    <input type="text" class="form-control" name="berat_badan" value="<%= data.berat_badan %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Tinggi Badan</label>
+                                    <input type="text" class="form-control" name="tinggi_badan" value="<%= data.tinggi_badan %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Alamat</label>
+                                    <input type="text" class="form-control" name="alamat" value="<%= data.alamat %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Kabupaten/Kota</label>
+                                    <input type="text" class="form-control" name="kabupaten" value="<%= data.kabupaten %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Kategori Sekarang: </label>
+                                    <label><%= data.kategori %></label>
+                                    <select class="form-control basic" name="kategori">
+                                        <option value="ODP" <%= data.kategori === "ODP" ? "selected" : "" %>>ODP</option>
+                                        <option value="OTG" <%= data.kategori === "OTG" ? "selected" : "" %>>OTG</option>
+                                        <option value="PDP" <%= data.kategori === "PDP" ? "selected" : "" %>>PDP</option>
+                                        <option value="Positif" <%= data.kategori === "Positif" ? "selected" : "" %>>Positif</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Tahap Sekarang: </label>
+                                    <label><%= data.tahap %></label>
+                                    <select class="form-control basic" name="tahap">
+                                        <option value="Awal" <%= data.tahap === "Awal" ? "selected" : "" %>>Awal</option>
+                                        <option value="Lanjutan" <%= data.tahap === "Lanjutan" ? "selected" : "" %>>Lanjutan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Batuk Sekarang: </label>
+                                    <label><%= data.batuk %></label>
+                                    <select class="form-control basic" name="batuk">
+                                        <option value="tidak" <%= data.batuk === "tidak" ? "selected" : "" %>>Tidak</option>
+                                        <option value="iya" <%= data.batuk === "iya" ? "selected" : "" %>>Iya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Sesak Nafas Sekarang: </label>
+                                    <label><%= data.sesak %></label>
+                                    <select class="form-control basic" name="sesak" value="iya">
+                                        <option value="tidak" <%= data.sesak === "tidak" ? "selected" : "" %>>Tidak</option>
+                                        <option value="iya" <%= data.sesak === "iya" ? "selected" : "" %>>Iya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Lemas Badan Sekarang: </label>
+                                    <label><%= data.lemas %></label>
+                                    <select class="form-control basic" name="lemas">
+                                        <option value="tidak" <%= data.lemas === "tidak" ? "selected" : "" %>>Tidak</option>
+                                        <option value="iya" <%= data.lemas === "iya" ? "selected" : "" %>>Iya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Mual Sekarang: </label>
+                                    <label><%= data.mual %></label>
+                                    <select class="form-control basic" name="mual">
+                                        <option value="tidak" <%= data.mual === "tidak" ? "selected" : "" %>>Tidak</option>
+                                        <option value="iya" <%= data.mual === "iya" ? "selected" : "" %>>Iya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Pusing Sekarang: </label>
+                                    <label><%= data.pusing %></label>
+                                    <select class="form-control basic" name="pusing">
+                                        <option value="tidak" <%= data.pusing === "tidak" ? "selected" : "" %>>Tidak</option>
+                                        <option value="iya" <%= data.pusing === "iya" ? "selected" : "" %>>Iya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Dewasa/Anak: </label>
+                                    <label><%= data.dewasa_anak %></label>
+                                    <select class="form-control basic" name="dewasa_anak">
+                                        <option value="dewasa" <%= data.dewasa_anak === "dewasa" ? "selected" : "" %>>Dewasa</option>
+                                        <option value="anak" <%= data.dewasa_anak === "anak" ? "selected" : "" %>>Anak</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Skala Sekarang: </label>
+                                    <label><%= data.skala %></label>
+                                    <select class="form-control basic" name="skala">
+                                        <% for (let i = 1; i <= 5; i++) { %>
+                                          <option value="<%= i %>" <%= i === +data.skala ? "selected" : "" %>><%= i %></option>
+                                        <% } %>
+                                    </select>
+                                    <br>
+                                    <label>* 1= Tidak ada gejala; 2= Batuk Ringan; 3= Lemas; 4= Susah Nafas; 5= Butuh
+                                        Pertolongan</label>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Keterangan</label>
+                                    <textarea row=5 type="text" class="form-control" name="keterangan"><%= data.keterangan %></textarea>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Dokter</label>
+                                    <select class="form-control" name="dokter">
+                                      <% for (let i = 0; i < doctors.length; i++) { %>
+                                        <option value="<%= doctors[i]._id %>" <%= doctors[i]._id.toString() == data.dokter.toString() ? "selected" : "" %>><%= doctors[i].nama_lengkap %></option>
+                                      <% } %>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlFile1">Keadaan Khusus</label>
+                                    <input value="<%= data.keadaan_khusus %>" type="text" class="form-control" name="keadaan_khusus"></input>
+                                    <br>
+                                    <label>* Diabetes, Hamil, Asma, TBC dan lainnya</label>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                                    <div class="widget widget-chart-one" style="height: 400px;">
+                                        <label>Mark Your Location</label>
+                                        <div id='mapMarker' style='width: 100%; height: 90%;'>
+                                            <pre id="coordinates" class="coordinates"></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" id="latitude" name="lat"
+                                        placeholder="Latitude" value="<%= data.lat %>">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control" id="longitude" name="long"
+                                        placeholder="Longitude" value="<%= data.long %>">
+                                </div>
+                                <input hidden value="<%= data._id %>" name="_id">
+                                <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Update</button>
+                            </form>
+                            <form action="/pasienTBC/deleteById" method="POST">
+                                <button type="submit" class="btn btn-danger mt-3" style="width: 100%;">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <%- include("../layout/footer.ejs")%>
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="/bootstrap/js/popper.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/plugins/table/datatable/datatables.js"></script>
+    <script>
+        $('#zero-config').DataTable({
+            "oLanguage": {
+                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "Showing page _PAGE_ of _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "Search...",
+                "sLengthMenu": "Results :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [7, 10, 20, 50],
+            "pageLength": 7
+        });
+    </script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuZ3Nha2F3aXJhIiwiYSI6ImNqdXBhajZmeTBudXg0NG50YjdhcDF2amUifQ.NmC56k1T54xEKGmlrFOxRA';
+        var coordinates = document.getElementById('coordinates');
+        var mapMarker = new mapboxgl.Map({
+            container: 'mapMarker',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: ["<%= data.long %>", "<%= data.lat %>"],
+            zoom: 10
+        });
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat(["<%= data.long %>", "<%= data.lat %>"])
+            .addTo(mapMarker);
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML =
+                'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            document.getElementById("latitude").value = lngLat.lat
+            document.getElementById("longitude").value = lngLat.lng
+        }
+        marker.on('dragend', onDragEnd);
+    </script>
+</body>
+
+</html>

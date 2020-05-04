@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Detail Pasien Covid</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link href="/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+    <!--  END CUSTOM STYLE FILE  -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script>
+        window.onload = function () {
+            $.get("https://covid-monitoring2.kemkes.go.id/summary/provinces").done(locations => {
+                let jumlah = 0
+                locations.map(data => {
+                    jumlah += parseInt(data.count)
+                })
+                console.log("Jumlah Pasien: " + jumlah)
+                document.getElementById("pasien1").innerHTML = jumlah
+                document.getElementById("pasien2").innerHTML = jumlah
+            })
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <%- include("../layout/detail-navbar.ejs")%>
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <%- include("../layout/general-sidebar.ejs")%>
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+                <div class="row layout-spacing">
+
+                    <!-- Content -->
+                    <div class="col-xl-4 col-lg-6 col-md-5 col-sm-12 layout-top-spacing">
+
+                        <div class="user-profile layout-spacing">
+                            <div class="widget-content widget-content-area">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="">Profile</h3>
+                                    <a href="/page/edit-pasien-covid-page/<%= data._id %>" class="mt-2 edit-profile">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-edit-3">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                        </svg></a>
+                                </div>
+                                <div class="text-center user-info">
+                                    <!-- <img src="assets/img/90x90.jpg" alt="avatar"> -->
+                                    <p class=""><%= data.nama %></p>
+                                </div>
+                                <div class="user-info-list">
+
+                                    <div class="">
+                                        <ul class="contacts-block list-unstyled">
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                Jenis Kelamin: <%= data.jenis_kelamin %>
+                                            </li>
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                Umur: <%= data.umur %>
+                                            </li>
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                Berat Badan: <%= data.berat_badan %>
+                                            </li>
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                Tinggi Badan: <%= data.tinggi_badan %>
+                                            </li>
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                Kabupaten: <%= data.kabupaten %>
+                                            </li>
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                Alamat: <%= data.alamat %>
+                                            </li>
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                Pendamping: <%= data.nama_pendamping %>
+                                            </li>
+                                            <li class="contacts-block__item" style="text-align: center;">
+                                                No HP: <%= data.no_hp %>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="education layout-spacing ">
+                            <div class="widget-content widget-content-area">
+                                <h3 class="">Riwayat</h3>
+                                <div class="timeline-alter">
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">04 Mar 2009</p>
+                                        </div>
+                                        <div class="t-dot">
+                                        </div>
+                                        <div class="t-text">
+                                            <p>Pasien Baru</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="work-experience layout-spacing ">
+
+                            <div class="widget-content widget-content-area">
+
+                                <h3 class="">Gejala</h3>
+
+                                <div class="timeline-alter">
+
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">04 Mar 2009</p>
+                                        </div>
+                                        <div class="t-dot">
+                                        </div>
+                                        <div class="t-text">
+                                            <p>Batuk</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
+                        <div class="skills layout-spacing ">
+                            <div class="widget-content widget-content-area">
+                                <h3 class="">Status: <%= data.kategori %></h3>
+                                <div class="progress br-30">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 25%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-title"><span>Obat Diminum</span> <span>25%</span> </div>
+                                    </div>
+                                </div>
+                                <div class="progress br-30">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-title"><span>Obat Ditinggal</span> <span>50%</span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bio layout-spacing ">
+                            <div class="widget-content widget-content-area">
+                                <h3 class="">Gejala</h3>
+                                <div class="bio-skill-box">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Batuk</h5>
+                                                    <p><%= data.batuk %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Demam</h5>
+                                                    <p><%= data.demam %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Sesak Nafas</h5>
+                                                    <p><%= data.sesak %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Mual</h5>
+                                                    <p><%= data.mual %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Pusing</h5>
+                                                    <p><%= data.pusing %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Skala</h5>
+                                                    <p><%= data.skala %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-chart-one" style="height: 500px;">
+                            <div class="widget-heading">
+                                <h5 class="">Lokasi Pasien</h5>
+                                <ul class="tabs tab-pills">
+                                    <li><a href="javascript:void(0);" id="tb_1" class="tabmenu">Detail</a></li>
+                                </ul>
+                            </div>
+                            <div id='map_distribusi' style='width: 100%; height: 90%;'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%- include("../layout/footer.ejs")%>
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="/bootstrap/js/popper.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script>
+        let YOUR_API_KEY = "<%= apiMap %>"
+        let containers = ["map_distribusi"]
+        
+        console.log("<%= hostMap %>" + "/pasienCovid/findPasienById/"+"<%= data._id %>")
+        let urls = ["<%= hostMap %>" + "/pasienCovid/findPasienById/"+"<%= data._id %>"]
+        for (let i = 0; i < containers.length; i++) {
+            let locations_map = []
+            $.get(urls[i]).done(locations => {
+                mapboxgl.accessToken = YOUR_API_KEY;
+                var map = new mapboxgl.Map({
+                    container: containers[i],
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    zoom: 8.7,
+                    center: ["<%= data.long %>", "<%= data.lat %>"]
+                });
+
+                map.on('load', function () {
+                    /* Image: An image is loaded and added to the map. */
+                    map.loadImage("https://i.imgur.com/MK4NUzI.png", function (error, image) {
+                        if (error) throw error;
+                        map.addImage("custom-marker", image);
+                        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+                        locations.map(data => {
+                            console.log(data)
+                            let locations_for_map = {
+                                type: 'Feature',
+                                'properties': {
+                                    'description':
+                                        `<strong style="color:#000000">${data.nama}</strong>
+                                <li style="color:#000000">${data.kategori}</li>
+                                <br>
+                                <a style="color:#0000ff" href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">Detail Info</a>`
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [data.long, data.lat]
+                                }
+                            }
+                            locations_map.push(locations_for_map)
+                        });
+                        console.log(locations_map)
+                        map.addSource('places', {
+                            'type': 'geojson',
+                            'data': {
+                                'type': 'FeatureCollection',
+                                'features': locations_map
+                            }
+                        })
+                        // Add a layer showing the places.
+                        map.addLayer({
+                            'id': 'places',
+                            'type': 'symbol',
+                            'source': 'places',
+                            layout: { "icon-image": "custom-marker", }
+                        });
+                    })
+
+
+                    // When a click event occurs on a feature in the places layer, open a popup at the
+                    // location of the feature, with description HTML from its properties.
+                    map.on('click', 'places', function (e) {
+                        var coordinates = e.features[0].geometry.coordinates.slice();
+                        var description = e.features[0].properties.description;
+
+                        // Ensure that if the map is zoomed out such that multiple
+                        // copies of the feature are visible, the popup appears
+                        // over the copy being pointed to.
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
+
+                        new mapboxgl.Popup()
+                            .setLngLat(coordinates)
+                            .setHTML(description)
+                            .addTo(map);
+                    });
+
+                    // Change the cursor to a pointer when the mouse is over the places layer.
+                    map.on('mouseenter', 'places', function () {
+                        map.getCanvas().style.cursor = 'pointer';
+                    });
+
+                    // Change it back to a pointer when it leaves.
+                    map.on('mouseleave', 'places', function () {
+                        map.getCanvas().style.cursor = '';
+                    });
+                });
+            });
+
+        }
+    </script>
+</body>
+
+</html>

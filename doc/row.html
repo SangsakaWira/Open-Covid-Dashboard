@@ -1,0 +1,81 @@
+<tr>
+    <td class="checkbox-column"> 1 </td>
+    <td>RS Husen Muhammad</td>
+    <td>Ahmad Ali</td>
+    <td>ahmadali@gmail.com</td>
+    <td>Masker</td>
+    <td>500</td>
+    <td>555-555-5555</td>
+    <td class="text-center">
+        Palembang
+    </td>
+    <td class="text-center">
+        <span class="shadow-none badge badge-primary">Approved</span>
+    </td>
+    <td class="text-center">
+        <a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+            data-original-title="Detail">
+            Info
+        </a>
+    </td>
+</tr>
+<tr>
+    <td class="checkbox-column"> 2 </td>
+    <td>RS Siloam Palembang</td>
+    <td>Nelson</td>
+    <td>nelson@gmail.com</td>
+    <td>Masker</td>
+    <td>500</td>
+    <td>555-555-6666</td>
+    <td class="text-center">
+        Palembang
+    </td>
+    <td class="text-center"><span class="shadow-none badge badge-warning">Suspended</span></td>
+    <td class="text-center">
+        <a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+            data-original-title="Detail">
+            Info
+        </a></td>
+</tr>
+<tr>
+    <td class="checkbox-column"> 3 </td>
+    <td>RS Muhammadiyah Plaju</td>
+    <td>Nurul</td>
+    <td>nurul@live.com</td>
+    <td>Masker</td>
+    <td>500</td>
+    <td>777-555-5555</td>
+    <td class="text-center">
+        Palembang
+    </td>
+    <td class="text-center">
+        <span class="shadow-none badge badge-danger">Closed</span></td>
+    <td class="text-center">
+        <a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+            data-original-title="Detail">
+            Info
+        </a>
+    </td>
+</tr>
+
+<tr>
+    <td class="checkbox-column"> <%= data %> </td>
+    <td><%= kebutuhan[data].nama %></td>
+    <td><%= kebutuhan[data].nama %></td>
+    <td><%= kebutuhan[data].email %></td>
+    <td><%= kebutuhan[data].jenis %></td>
+    <td><%= kebutuhan[data].jumlah %></td>
+    <td><%= kebutuhan[data].no_hp %></td>
+    <td class="text-center">
+        <%= kebutuhan[data].nama %>
+    </td>
+    <td class="text-center">
+        <span class="shadow-none badge badge-primary">Approved</span>
+    </td>
+    <td class="text-center">
+        <a href="/kebutuhan/findKebutuhanById/<%= kebutuhan.id %>" class="bs-tooltip" data-toggle="tooltip"
+            data-placement="top" title="" data-original-title="Detail">
+            Info
+        </a>
+    </td>
+</tr>
