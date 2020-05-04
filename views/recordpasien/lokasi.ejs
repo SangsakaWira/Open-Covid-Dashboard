@@ -199,13 +199,12 @@
 
     </script>
     <script>
-        let YOUR_API_KEY = "pk.eyJ1Ijoic2FuZ3Nha2F3aXJhIiwiYSI6ImNqdXBhajZmeTBudXg0NG50YjdhcDF2amUifQ.NmC56k1T54xEKGmlrFOxRA" //you can generate using your own api key in mapbox
-        let containers = ["map"]
-        let urls = ["http://localhost:3000/pasienCovid/findAllPasien"]
+        let YOUR_API_KEY = "<%= apiMap %>"; //you can generate using your own api key in mapbox
+        let containers = ["map"];
+        let urls = ["http://localhost:3000/pasienCovid/findAllPasien"];
         for (let i = 0; i < containers.length; i++) {
-            let locations_map = []
             $.get(urls[i]).done(locations => {
-                mapboxgl.accessToken = "pk.eyJ1Ijoic2FuZ3Nha2F3aXJhIiwiYSI6ImNqdXBhajZmeTBudXg0NG50YjdhcDF2amUifQ.NmC56k1T54xEKGmlrFOxRA";
+                mapboxgl.accessToken = YOUR_API_KEY;
                 var map = new mapboxgl.Map({
                     container: containers[i],
                     style: 'mapbox://styles/mapbox/streets-v11',
@@ -219,32 +218,29 @@
                         if (error) throw error;
                         map.addImage("custom-marker", image);
                         /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
-                        locations.map(data => {
-                            console.log(data)
-                            let locations_for_map = {
-                                type: 'Feature',
-                                'properties': {
-                                    'description':
-                                        `<strong style="color:#000000">${data.nama}</strong>
-                                <li style="color:#000000">${data.alamat}</li>
-                                <br>
-                                <a style="color:#0000ff" href="/page/covid-pasien-detail-page/${data._id}" target="_blank" title="Opens in a new window">Detail Info</a>`
-                                },
-                                'geometry': {
-                                    'type': 'Point',
-                                    'coordinates': [data.long, data.lat]
-                                }
+                        const mapFeatures = locations.map(data => (
+                          {
+                            type: 'Feature',
+                            properties: {
+                              description:`
+                              <strong style="color:#000000">${data.nama}</strong>
+                              <li style="color:#000000">${data.alamat}</li>
+                              <br>
+                              <a style="color:#0000ff" href="/page/covid-pasien-detail-page/${data._id}" target="_blank" title="Opens in a new window">Detail Info</a>`
+                            },
+                            geometry: {
+                              'type': 'Point',
+                              'coordinates': [data.long, data.lat]
                             }
-                            locations_map.push(locations_for_map)
-                        });
-                        console.log(locations_map)
+                          }
+                        ));
                         map.addSource('places', {
                             'type': 'geojson',
                             'data': {
                                 'type': 'FeatureCollection',
-                                'features': locations_map
+                                'features': mapFeatures
                             }
-                        })
+                        });
                         // Add a layer showing the places.
                         map.addLayer({
                             'id': 'places',
@@ -252,7 +248,7 @@
                             'source': 'places',
                             layout: { "icon-image": "custom-marker", }
                         });
-                    })
+                    });
 
 
                     // When a click event occurs on a feature in the places layer, open a popup at the

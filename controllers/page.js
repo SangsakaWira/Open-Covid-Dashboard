@@ -238,7 +238,7 @@ exports.mdrTbPage = async (req, res) => {
 
 // Lokasi Page
 exports.lokasiPage = (req, res) => {
-  pasienTBC.find((err, doc) => {
+  pasienCovid.find((err, doc) => {
     res.render("recordpasien/lokasi", {
       title: "Lokasi",
       username: req.session.username,
