@@ -20,13 +20,11 @@ const URI = "mongodb://localhost/audiometer-online"
 const userRouter = require("./routes/user")
 const pageRouter = require("./routes/page")
 const kebutuhanRouter = require("./routes/kebutuhan")
-const pasienTBCRouter = require("./routes/pasienTBC")
-const recordTBCRouter = require("./routes/recordTBC")
 const pasienCovidRouter = require("./routes/pasienCOVID")
 const emergencyRouter = require("./routes/emergency")
 
 const records = require("./models/records")
-const pasien = require("./models/pasienTBC")
+const pasien = require("./models/pasienCovid")
 
 const errorController = require("./controllers/error")
 
@@ -103,8 +101,6 @@ mongoose.connect(URI, {
 app.use("/user", userRouter)
 app.use("/page", pageRouter)
 app.use("/kebutuhan", kebutuhanRouter)
-app.use("/pasienTBC", pasienTBCRouter)
-app.use("/recordsTBC", recordTBCRouter)
 app.use("/pasienCovid", pasienCovidRouter)
 app.use("/emergency", emergencyRouter)
 

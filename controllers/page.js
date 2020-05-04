@@ -1,5 +1,4 @@
 const kebutuhan = require("../models/kebutuhan")
-const pasienTBC = require("../models/pasienTBC")
 const pasienCovid = require("../models/pasienCovid")
 const dokter = require("../models/dokter")
 const records = require("../models/records")
