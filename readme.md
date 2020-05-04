@@ -3,9 +3,9 @@
 Dashboard monitoring dan reporting untuk persiapan pandemi covid-19.
 
 ## Sistem ini support:
-1. Lokasi Pasien.
-2. Report kekurangan APD.
-3. Report kekurangan bahan baku makanan di kabupaten.
+1. Status Pasien.
+2. Report kebutuhan Pasien.
+3. Telemedicine Pasien dan Dokter.
 4. lainnya.
 
 ### Login Page
@@ -13,6 +13,9 @@ Dashboard monitoring dan reporting untuk persiapan pandemi covid-19.
 
 ### Dashboard
 ![Cork Admin Dashboard](dashboard.PNG)
+
+### Custom Logo
+![Cork Admin Login](LOGO_ITS_DASHBOARD.PNG)
 
 ## Dokumentasi
 
