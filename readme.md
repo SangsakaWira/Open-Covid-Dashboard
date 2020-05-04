@@ -31,6 +31,16 @@ git clone https://github.com/SangsakaWira/Universal-Covid-19-Dashboard.git
 cd Universal-Covid-19-Dashboard
 npm install
 ```
+Buat file .env dan contoh isi file:
+
+```
+API_KEY=secretkeydarimapbox
+PORT=4500
+HOST_PRODUK=http://covid-dashboard-its
+HOST_DEV=http://localhost:3000
+HOST=http://covid-dashboard-its.id
+MODE=COVID
+```
 
 Cara Menjalankan: 
 
