@@ -1,7 +1,7 @@
 # Open Covid-19 Dashboard
 
 ### Login Page
-![Cork Admin Login](login.PNG)
+![Cork Admin Login](LOGIN.PNG)
 
 Dashboard monitoring dan reporting untuk persiapan pandemi covid-19. Digunakan
 untuk rumah sakit, puskesmas, kantor dan instansi lainnya yang ingin melakukan
@@ -14,7 +14,7 @@ tracking kondisi kesehatan pasien/pegawai dan melakukan pencegahan.
 4. lainnya.
 
 ### Dashboard Page
-<!-- ![Cork Admin Dashboard](dashboard.PNG) -->
+![Cork Admin Dashboard](dashboard.PNG)
 
 
 ## Dokumentasi
