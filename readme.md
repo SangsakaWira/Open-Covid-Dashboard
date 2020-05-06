@@ -14,7 +14,7 @@ tracking kondisi kesehatan pasien/pegawai dan melakukan pencegahan.
 4. lainnya.
 
 ### Dashboard Page
-![Cork Admin Dashboard](dashboard.PNG)
+<!-- ![Cork Admin Dashboard](dashboard.PNG) -->
 
 
 ## Dokumentasi
