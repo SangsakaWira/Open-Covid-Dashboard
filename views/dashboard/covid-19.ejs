@@ -570,8 +570,8 @@
         chart.render();
     </script>
     <script>
-        $.get("<%= apiMap %>").done(locations => {
-            mapboxgl.accessToken = "<%= hostMap %>";
+        $.get("<%= hostMap %>").done(locations => {
+            mapboxgl.accessToken = "<%= apiMap %>";
             let features = []
             console.log(locations)
             locations.forEach(data => {

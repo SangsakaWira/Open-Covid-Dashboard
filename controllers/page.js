@@ -182,6 +182,7 @@ exports.covidPage = async (req, res) => {
     .find()
     .populate("dokter", "nama_lengkap")
     .exec((err, doc) => {
+      console.log(doc)
       res.render("dashboard/covid-19", {
         title: "COVID-19",
         username: req.session.username,
