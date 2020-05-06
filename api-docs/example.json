@@ -1,0 +1,2915 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Covid Dashboard API",
+        "license": {
+            "name": "ITS"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4500",
+            "description": "Api server"
+        }
+    ],
+    "paths": {
+        "/user/api/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User login",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "sugandi",
+                                    "password": "password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/update_absensi/{id}/{status}": {
+            "get": {
+                "tags": [
+                    "Absensi Users"
+                ],
+                "summary": "Update status absensi user by id_absensi_user",
+                "operationId": "App\\Http\\Controllers\\AbsensiController::update_absensi",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "$ref": "#/components/parameters/id"
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api_dokumen_absensi_filter/{id}/{month}/{year}": {
+            "get": {
+                "tags": [
+                    "Absensi Users"
+                ],
+                "summary": "Get absensi user by id_users, month and year",
+                "operationId": "App\\Http\\Controllers\\AbsensiController::get_user_absensi_by_date",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "$ref": "#/components/parameters/id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/month"
+                    },
+                    {
+                        "$ref": "#/components/parameters/year"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api_dokumen_absensi/{id}/{month}/{year}": {
+            "get": {
+                "tags": [
+                    "Absensi Users"
+                ],
+                "summary": "Get detailed absensi user by id_users, month and year",
+                "operationId": "App\\Http\\Controllers\\AbsensiController::get_absensi_user",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "$ref": "#/components/parameters/id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/month"
+                    },
+                    {
+                        "$ref": "#/components/parameters/year"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/absensi/insert_absensi": {
+            "post": {
+                "tags": [
+                    "Absensi Users"
+                ],
+                "summary": "Insert absensi",
+                "operationId": "App\\Http\\Controllers\\AbsensiController::insert",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "time": {
+                                        "type": "string"
+                                    },
+                                    "nama_lokasi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 41,
+                                    "date": "2020-04-14",
+                                    "time": "04:20:44",
+                                    "nama_lokasi": "KRIAN - SIDOARJO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/absensi/tampil_absensi": {
+            "post": {
+                "tags": [
+                    "Absensi Users"
+                ],
+                "summary": "Get absensi data union with Users",
+                "operationId": "App\\Http\\Controllers\\AbsensiController::get_union",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/chart/unsafe_performance": {
+            "post": {
+                "tags": [
+                    "Chart"
+                ],
+                "summary": "Get unsafe, near-miss and fatality data in date range",
+                "operationId": "App\\Http\\Controllers\\ChartController::unsafe_performance",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_lokasi": {
+                                        "type": "string"
+                                    },
+                                    "date_start": {
+                                        "type": "string"
+                                    },
+                                    "date_end": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_lokasi": 29,
+                                    "date_start": "2019-06-30",
+                                    "date_end": "2020-03-23"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/chart/status_actions": {
+            "post": {
+                "tags": [
+                    "Chart"
+                ],
+                "summary": "Get open, on progress and close status action in date range",
+                "operationId": "App\\Http\\Controllers\\ChartController::count_status_actions",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_lokasi": {
+                                        "type": "string"
+                                    },
+                                    "date_start": {
+                                        "type": "string"
+                                    },
+                                    "date_end": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_lokasi": 29,
+                                    "date_start": "2019-06-30",
+                                    "date_end": "2020-03-23"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/tampil_all_detail_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Get all detail form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::get_all",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/tampil_all_filter_by_tanggal": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Get all detail form on specific date",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::get_all_filter_date",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tanggal": {
+                                        "type": "string"
+                                    },
+                                    "id_lokasi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "tanggal": "2019-07-02",
+                                    "id_lokasi": 31
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/tampil_all_filter_by_tanggaluser": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Get all detail form of user on specific date",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::get_all_filter_user_date",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "tanggal": {
+                                        "type": "string"
+                                    },
+                                    "id_lokasi": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 27,
+                                    "tanggal": "2019-07-02",
+                                    "id_lokasi": 31
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/tampil_chart_unsafe": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Get chart data",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::get_chart_data",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_kategori": {
+                                        "type": "string"
+                                    },
+                                    "bulan": {
+                                        "type": "number"
+                                    },
+                                    "year": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nama_kategori": "Unsafe Act",
+                                    "bulan": 7,
+                                    "year": 2019
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/tampil_detail_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Get by Id user",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::get_by_id_user",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 27
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/tampil_info_detail": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Get detail by Id",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::get_detail_by_id",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_detail_form": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_detail_form": 69
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/uploads/{img_name}": {
+            "get": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Get image form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::get_image_form",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "name": "img_name",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/insert_detail_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Insert detail form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::insert",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_kategori": {
+                                        "type": "string"
+                                    },
+                                    "kategori_bahaya": {
+                                        "type": "string"
+                                    },
+                                    "sumber_bahaya": {
+                                        "type": "string"
+                                    },
+                                    "lokasi_bahaya": {
+                                        "type": "string"
+                                    },
+                                    "jumlah_tower": {
+                                        "type": "string"
+                                    },
+                                    "alamat": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "status_pengerjaan": {
+                                        "type": "string"
+                                    },
+                                    "respon_berhenti": {
+                                        "type": "string"
+                                    },
+                                    "dariDurasiKerja": {
+                                        "type": "string"
+                                    },
+                                    "keDurasiKerja": {
+                                        "type": "string"
+                                    },
+                                    "tindakan_dilakukan": {
+                                        "type": "string"
+                                    },
+                                    "foto": {
+                                        "type": "string"
+                                    },
+                                    "id_status": {
+                                        "type": "number"
+                                    },
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "longitude": {
+                                        "type": "number"
+                                    },
+                                    "latitude": {
+                                        "type": "number"
+                                    },
+                                    "nama_sub_kategori": {
+                                        "type": "string"
+                                    },
+                                    "id_lokasi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nama_kategori": "Unsafe Act",
+                                    "kategori_bahaya": "Safety",
+                                    "sumber_bahaya": "Behaviour|",
+                                    "lokasi_bahaya": "Other",
+                                    "jumlah_tower": "07",
+                                    "alamat": "Gis Driyorejo",
+                                    "deskripsi": "Wajib memberikan rambu-rambu diarea kerja",
+                                    "status_pengerjaan": "No",
+                                    "respon_berhenti": "-",
+                                    "dariDurasiKerja": "11:20",
+                                    "keDurasiKerja": "13.45",
+                                    "tindakan_dilakukan": "Subcon bersedia memasang rambu-rambu peringatan diarea kerja besok.",
+                                    "foto": "FOTO_KEGIATAN.jpg",
+                                    "id_status": 2,
+                                    "id_status_action": 1,
+                                    "id_users": 31,
+                                    "longitude": 1.2342041999999999735138089818065054714679718017578125,
+                                    "latitude": 1.69696960000000007795506462571211159229278564453125,
+                                    "nama_sub_kategori": "SUB KATEGORI",
+                                    "id_lokasi": 33
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/update_detail_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Update detail form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_detail_form": {
+                                        "type": "number"
+                                    },
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "nama_kategori": {
+                                        "type": "string"
+                                    },
+                                    "kategori_bahaya": {
+                                        "type": "string"
+                                    },
+                                    "sumber_bahaya": {
+                                        "type": "string"
+                                    },
+                                    "lokasi_bahaya": {
+                                        "type": "string"
+                                    },
+                                    "jumlah_tower": {
+                                        "type": "string"
+                                    },
+                                    "alamat": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "status_pengerjaan": {
+                                        "type": "string"
+                                    },
+                                    "respon_berhenti": {
+                                        "type": "string"
+                                    },
+                                    "dariDurasiKerja": {
+                                        "type": "string"
+                                    },
+                                    "keDurasiKerja": {
+                                        "type": "string"
+                                    },
+                                    "tindakan_dilakukan": {
+                                        "type": "string"
+                                    },
+                                    "foto": {
+                                        "type": "string"
+                                    },
+                                    "nama_sub_kategori": {
+                                        "type": "string"
+                                    },
+                                    "id_lokasi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_detail_form": 220,
+                                    "id_users": 31,
+                                    "nama_kategori": "Unsafe Act",
+                                    "kategori_bahaya": "Safety",
+                                    "sumber_bahaya": "Behaviour|",
+                                    "lokasi_bahaya": "Other",
+                                    "jumlah_tower": "07",
+                                    "alamat": "Gis Driyorejo",
+                                    "deskripsi": "Wajib memberikan rambu-rambu diarea kerja",
+                                    "status_pengerjaan": "Yes",
+                                    "respon_berhenti": "-",
+                                    "dariDurasiKerja": "11:20",
+                                    "keDurasiKerja": "13.45",
+                                    "tindakan_dilakukan": "Subcon bersedia memasang rambu-rambu peringatan diarea kerja besok.",
+                                    "foto": "FOTO_KEGIATAN.jpg",
+                                    "nama_sub_kategori": "SUB KATEGORI",
+                                    "id_lokasi": 33
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/update_status_detail_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Update status detail form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::update_status",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_detail_form": {
+                                        "type": "number"
+                                    },
+                                    "id_status": {
+                                        "type": "number"
+                                    },
+                                    "id_koor": {
+                                        "type": "number"
+                                    },
+                                    "revision": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_detail_form": 218,
+                                    "id_status": 2,
+                                    "id_koor": 49,
+                                    "revision": "REVISION"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/update_status_action_detail_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Update status action detail form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::update_status_action",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_detail_form": {
+                                        "type": "number"
+                                    },
+                                    "id_status_action": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_detail_form": 220,
+                                    "id_status_action": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/delete_detail_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Delete detail form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::delete",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "id_detail_form": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 31,
+                                    "id_detail_form": 218
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/upload_image_form": {
+            "post": {
+                "tags": [
+                    "Detail Form"
+                ],
+                "summary": "Upload image detail form",
+                "operationId": "App\\Http\\Controllers\\DetailFormController::upload",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_all_detail_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all detail reports for a month past",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api_photo_all": {
+            "get": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get photo from a week past",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_photo",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api_dokumen_all/{limit}": {
+            "get": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all data with specific limit",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_with_limit",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api_dokumen/{id}": {
+            "get": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get data by Id",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_by_id",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_info_detail_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all detail reports by Id report detail",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_by_id",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_report_detail": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_report_detail": 69
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_all_approve_detail_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all approved detail reports",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_approved_reports",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_all_filter_by_date": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all data filtered by date",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_filter_date",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2019-12-20"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_all_filter_by_location": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all data filtered by location",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_filter_location",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "location": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "location": "33"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_detail_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all data filtered by id user",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_filter_user",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 40
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_all_detail_filter_by_date_location": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all data filtered by date and location",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_filter_date_location",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "lokasi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2019-12-20",
+                                    "lokasi": "33"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_all_detail_filter_by_date_locationusers": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get all data filtered by user, date and location",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_all_filter_user_date_location",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "lokasi": {
+                                        "type": "string"
+                                    },
+                                    "id_users": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2019-12-20",
+                                    "lokasi": "33",
+                                    "id_users": 40
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/web/get_chart/{month}": {
+            "get": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get chart data",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_chart_data",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "$ref": "#/components/parameters/month"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/uploads/{img_name}": {
+            "get": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Get image report",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::get_image_report",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "name": "img_name",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/insert_detail_report": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Insert detail report",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::insert",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "lokasi_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "tanggal_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "permasalahan_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "rekomendasi_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "cerah": {
+                                        "type": "string"
+                                    },
+                                    "hujan": {
+                                        "type": "string"
+                                    },
+                                    "berawan": {
+                                        "type": "string"
+                                    },
+                                    "foto_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "id_status": {
+                                        "type": "number"
+                                    },
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "longitude": {
+                                        "type": "string"
+                                    },
+                                    "latitude": {
+                                        "type": "string"
+                                    },
+                                    "waktu": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nama_kegiatan": "NAMA KEGIATAN",
+                                    "lokasi_kegiatan": "LOKASI KEGIATAN",
+                                    "tanggal_kegiatan": "2020-04-14",
+                                    "deskripsi_kegiatan": "DESKRIPSI KEGIATAN",
+                                    "permasalahan_kegiatan": "PERMASALAHAN_KEGIATAN",
+                                    "rekomendasi_kegiatan": "REKOMENDASI KEGIATAN",
+                                    "cerah": "CERAH",
+                                    "hujan": "HUJAN",
+                                    "berawan": "BERAWAN",
+                                    "foto_kegiatan": "FOTO-FOTO KEGIATAN",
+                                    "id_status": 2,
+                                    "id_users": 40,
+                                    "longitude": "LONGITUDE",
+                                    "latitude": "LATITUDE",
+                                    "waktu": "WAKTU"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/update_detail_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Update detail report",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "id_report_detail": {
+                                        "type": "number"
+                                    },
+                                    "nama_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "lokasi_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "tanggal_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "permasalahan_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "rekomendasi_kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "cerah": {
+                                        "type": "string"
+                                    },
+                                    "hujan": {
+                                        "type": "string"
+                                    },
+                                    "berawan": {
+                                        "type": "string"
+                                    },
+                                    "foto_kegiatan": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 40,
+                                    "id_report_detail": 6605,
+                                    "nama_kegiatan": "UPDATE NAMA KEGIATAN",
+                                    "lokasi_kegiatan": "UPDATE LOKASI KEGIATAN",
+                                    "tanggal_kegiatan": "2069-04-14",
+                                    "deskripsi_kegiatan": "UPDATE DESKRIPSI KEGIATAN",
+                                    "permasalahan_kegiatan": "UPDATE PERMASALAHAN_KEGIATAN",
+                                    "rekomendasi_kegiatan": "UPDATE REKOMENDASI KEGIATAN",
+                                    "cerah": "UPDATE",
+                                    "hujan": "UPDATE",
+                                    "berawan": "UPDATE",
+                                    "foto_kegiatan": "UPDATE FOTO-FOTO KEGIATAN"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/update_status_detail_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Update status detail report",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::update_status",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_report_detail": {
+                                        "type": "number"
+                                    },
+                                    "id_status": {
+                                        "type": "number"
+                                    },
+                                    "id_koor": {
+                                        "type": "number"
+                                    },
+                                    "revision": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_report_detail": 6605,
+                                    "id_status": 2,
+                                    "id_koor": 36,
+                                    "revision": "UPDATE REVISION"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/delete_detail_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Delete detail report",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::delete",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    },
+                                    "id_report_detail": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 40,
+                                    "id_report_detail": 6099
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/upload_image_reports": {
+            "post": {
+                "tags": [
+                    "Detail Report"
+                ],
+                "summary": "Upload image reports",
+                "operationId": "App\\Http\\Controllers\\DetailReportController::upload",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api_dokumen_hse_all": {
+            "get": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get all detailed HSE",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_detail_all",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api_dokumen_hse/{id}": {
+            "get": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get detailed HSE by Id",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_detail_by_id",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    },
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/tampil_hse_detail": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get Laporan HSE detail by Id",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_detail_by_id_without_user",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_laporan_hse": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_laporan_hse": 791
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/tampil_hse_all": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get all Laporan HSE",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_all",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/tampil_hse": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get Laporan HSE by Id users",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_by_id",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 13
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/tampil_hse_filter_by_date": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get Laporan HSE on specific date",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_on_specific_date",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2019/12/21"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/tampil_hse_filter_lokasi_tanggal": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get Laporan HSE on specific date and location",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_on_specific_date_and_location",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tanggal": {
+                                        "type": "string"
+                                    },
+                                    "lokasi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "tanggal": "2019/12/21",
+                                    "lokasi": 31
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/tampil_hse_filter_lokasi_tanggaluser": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Get Laporan HSE on specific user, date and location",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::get_on_specific_user_date_and_location",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tanggal": {
+                                        "type": "string"
+                                    },
+                                    "lokasi": {
+                                        "type": "string"
+                                    },
+                                    "id_users": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "tanggal": "2019/12/1",
+                                    "lokasi": 13,
+                                    "id_users": 43
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/insert_hse": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Insert HSE",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::insert",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "jumlah_pekerja": {
+                                        "type": "string"
+                                    },
+                                    "waktu": {
+                                        "type": "string"
+                                    },
+                                    "id_cuaca": {
+                                        "type": "string"
+                                    },
+                                    "waktu_sampai": {
+                                        "type": "string"
+                                    },
+                                    "near_miss": {
+                                        "type": "string"
+                                    },
+                                    "p3k": {
+                                        "type": "string"
+                                    },
+                                    "medical_treatment": {
+                                        "type": "string"
+                                    },
+                                    "kebakaran": {
+                                        "type": "string"
+                                    },
+                                    "fatality": {
+                                        "type": "string"
+                                    },
+                                    "kecelakaan_lalu_lintas": {
+                                        "type": "string"
+                                    },
+                                    "kerusakan_properti": {
+                                        "type": "string"
+                                    },
+                                    "pencemaran": {
+                                        "type": "string"
+                                    },
+                                    "komplain": {
+                                        "type": "string"
+                                    },
+                                    "jumlahpekerjas": {
+                                        "type": "string"
+                                    },
+                                    "lama_bekerja": {
+                                        "type": "string"
+                                    },
+                                    "total_manhours": {
+                                        "type": "string"
+                                    },
+                                    "jsa": {
+                                        "type": "string"
+                                    },
+                                    "wp": {
+                                        "type": "string"
+                                    },
+                                    "prosedur_ik": {
+                                        "type": "string"
+                                    },
+                                    "sio_sia": {
+                                        "type": "string"
+                                    },
+                                    "kompetensi": {
+                                        "type": "string"
+                                    },
+                                    "slo": {
+                                        "type": "string"
+                                    },
+                                    "safety_briefing": {
+                                        "type": "string"
+                                    },
+                                    "safety_helmet": {
+                                        "type": "string"
+                                    },
+                                    "safety_shoes": {
+                                        "type": "string"
+                                    },
+                                    "body_harness": {
+                                        "type": "string"
+                                    },
+                                    "kondisi_peralatan_kerja": {
+                                        "type": "string"
+                                    },
+                                    "ear_plug": {
+                                        "type": "string"
+                                    },
+                                    "masker": {
+                                        "type": "string"
+                                    },
+                                    "kacamata": {
+                                        "type": "string"
+                                    },
+                                    "apar": {
+                                        "type": "string"
+                                    },
+                                    "sarung_tangan": {
+                                        "type": "string"
+                                    },
+                                    "safety_sign": {
+                                        "type": "string"
+                                    },
+                                    "id_status": {
+                                        "type": "string"
+                                    },
+                                    "id_users": {
+                                        "type": "string"
+                                    },
+                                    "tanggal": {
+                                        "type": "string"
+                                    },
+                                    "lokasi": {
+                                        "type": "string"
+                                    },
+                                    "pekerjaan": {
+                                        "type": "string"
+                                    },
+                                    "keterangan_waktu": {
+                                        "type": "string"
+                                    },
+                                    "rekomendasi": {
+                                        "type": "string"
+                                    },
+                                    "isu_terkait": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "kegiatan": "KEGIATAN",
+                                    "jumlah_pekerja": "JUMLAH PEKERJA",
+                                    "waktu": "WAKTU",
+                                    "id_cuaca": "2",
+                                    "waktu_sampai": "WAKTU SAMPAI",
+                                    "near_miss": "NEAR MISS",
+                                    "p3k": "P3K",
+                                    "medical_treatment": "MEDICAL TREATMENT",
+                                    "kebakaran": "KEBAKARAN",
+                                    "fatality": "FATALITY",
+                                    "kecelakaan_lalu_lintas": "KECELAKAAN LALU LINTAS",
+                                    "kerusakan_properti": "KERUSAKAN PROPERTI",
+                                    "pencemaran": "PENCEMARAN",
+                                    "komplain": "KOMPLAIN",
+                                    "jumlah_pekerjas": "JUMLAH PEKERJA 2",
+                                    "lama_bekerja": "LAMA BEKERJA",
+                                    "total_manhours": "TOTAL MANHOURS",
+                                    "jsa": "JSA",
+                                    "wp": "WP",
+                                    "prosedur_ik": "PROSEDUR IK",
+                                    "sio_sia": "SIO SIA",
+                                    "kompetensi": "KOMPETENSI",
+                                    "slo": "SLO",
+                                    "safety_briefing": "SAFETY BRIEFING",
+                                    "safety_helmet": "SAFETY HELMET",
+                                    "safety_shoes": "SAFETY SHOES",
+                                    "body_harness": "BODY HARNESS",
+                                    "kondisi_peralatan_kerja": "KONDISI",
+                                    "ear_plug": "EAR PLUG",
+                                    "masker": "MASKER",
+                                    "kacamata": "KACAMATA",
+                                    "apar": "APAR",
+                                    "sarung_tangan": "SARUNG TANGAN",
+                                    "safety_sign": "SAFETY SIGN",
+                                    "id_status": "2",
+                                    "id_users": 40,
+                                    "tanggal": "2020/4/15",
+                                    "lokasi": "SIDOARJO",
+                                    "pekerjaan": "GALIAN LUBANG",
+                                    "keterangan_waktu": "KETERANGAN WAKTU",
+                                    "rekomendasi": "REKOMENDASI",
+                                    "isu_terkait": "ISU TERKAIT"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/update_hse_detail": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Update HSE",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "kegiatan": {
+                                        "type": "string"
+                                    },
+                                    "jumlah_pekerja": {
+                                        "type": "string"
+                                    },
+                                    "waktu": {
+                                        "type": "string"
+                                    },
+                                    "id_cuaca": {
+                                        "type": "string"
+                                    },
+                                    "waktu_sampai": {
+                                        "type": "string"
+                                    },
+                                    "near_miss": {
+                                        "type": "string"
+                                    },
+                                    "p3k": {
+                                        "type": "string"
+                                    },
+                                    "medical_treatment": {
+                                        "type": "string"
+                                    },
+                                    "kebakaran": {
+                                        "type": "string"
+                                    },
+                                    "fatality": {
+                                        "type": "string"
+                                    },
+                                    "kecelakaan_lalu_lintas": {
+                                        "type": "string"
+                                    },
+                                    "kerusakan_properti": {
+                                        "type": "string"
+                                    },
+                                    "pencemaran": {
+                                        "type": "string"
+                                    },
+                                    "komplain": {
+                                        "type": "string"
+                                    },
+                                    "jumlahpekerjas": {
+                                        "type": "string"
+                                    },
+                                    "lama_bekerja": {
+                                        "type": "string"
+                                    },
+                                    "total_manhours": {
+                                        "type": "string"
+                                    },
+                                    "jsa": {
+                                        "type": "string"
+                                    },
+                                    "wp": {
+                                        "type": "string"
+                                    },
+                                    "prosedur_ik": {
+                                        "type": "string"
+                                    },
+                                    "sio_sia": {
+                                        "type": "string"
+                                    },
+                                    "kompetensi": {
+                                        "type": "string"
+                                    },
+                                    "slo": {
+                                        "type": "string"
+                                    },
+                                    "safety_briefing": {
+                                        "type": "string"
+                                    },
+                                    "safety_helmet": {
+                                        "type": "string"
+                                    },
+                                    "safety_shoes": {
+                                        "type": "string"
+                                    },
+                                    "body_harness": {
+                                        "type": "string"
+                                    },
+                                    "kondisi_peralatan_kerja": {
+                                        "type": "string"
+                                    },
+                                    "ear_plug": {
+                                        "type": "string"
+                                    },
+                                    "masker": {
+                                        "type": "string"
+                                    },
+                                    "kacamata": {
+                                        "type": "string"
+                                    },
+                                    "apar": {
+                                        "type": "string"
+                                    },
+                                    "sarung_tangan": {
+                                        "type": "string"
+                                    },
+                                    "safety_sign": {
+                                        "type": "string"
+                                    },
+                                    "id_status": {
+                                        "type": "string"
+                                    },
+                                    "tanggal": {
+                                        "type": "string"
+                                    },
+                                    "lokasi": {
+                                        "type": "string"
+                                    },
+                                    "pekerjaan": {
+                                        "type": "string"
+                                    },
+                                    "keterangan_waktu": {
+                                        "type": "string"
+                                    },
+                                    "rekomendasi": {
+                                        "type": "string"
+                                    },
+                                    "isu_terkait": {
+                                        "type": "string"
+                                    },
+                                    "id_laporan_hse": {
+                                        "type": "number"
+                                    },
+                                    "id_laporan_cuaca_k3l": {
+                                        "type": "number"
+                                    },
+                                    "id_performance_k3l": {
+                                        "type": "number"
+                                    },
+                                    "id_checklist_administrasi": {
+                                        "type": "number"
+                                    },
+                                    "id_checklist_perlengkapan": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "kegiatan": "XKEGIATAN",
+                                    "jumlah_pekerja": "JXUMLAH PEKERJA",
+                                    "waktu": "XX",
+                                    "id_cuaca": "1",
+                                    "waktu_sampai": "WAKTU X",
+                                    "near_miss": "NEAR X",
+                                    "p3k": "P3KX",
+                                    "medical_treatment": "X TREATMENT",
+                                    "kebakaran": "XKEBAKARAN",
+                                    "fatality": "XFATALITY",
+                                    "kecelakaan_lalu_lintas": "KECELAKAAN X LINTAS",
+                                    "kerusakan_properti": "KERUSAKAN X",
+                                    "pencemaran": "XPENCEMARAN",
+                                    "komplain": "XKOMPLAIN",
+                                    "jumlah_pekerjas": "JUMLAH PEKERJA X",
+                                    "lama_bekerja": "LAMA X",
+                                    "total_manhours": "TOTAL X",
+                                    "jsa": "JSAX",
+                                    "wp": "WPX",
+                                    "prosedur_ik": "PROSEDUR X",
+                                    "sio_sia": "SIO SIAX",
+                                    "kompetensi": "KOMPETENSIX",
+                                    "slo": "SLOX",
+                                    "safety_briefing": "XSAFETY BRIEFING",
+                                    "safety_helmet": "XSAFETY HELMET",
+                                    "safety_shoes": "XSAFETY SHOES",
+                                    "body_harness": "XBODY HARNESS",
+                                    "kondisi_peralatan_kerja": "XKONDISI",
+                                    "ear_plug": "XEAR PLUG",
+                                    "masker": "XMASKER",
+                                    "kacamata": "XKACAMATA",
+                                    "apar": "XAPAR",
+                                    "sarung_tangan": "XSARUNG TANGAN",
+                                    "safety_sign": "XSAFETY SIGN",
+                                    "id_status": "1",
+                                    "tanggal": "2020/4/31",
+                                    "lokasi": "MALANG",
+                                    "pekerjaan": "XGALIAN LUBANG",
+                                    "keterangan_waktu": "XKETERANGAN WAKTU",
+                                    "rekomendasi": "XREKOMENDASI",
+                                    "isu_terkait": "XISU TERKAIT",
+                                    "id_laporan_hse": 831,
+                                    "id_laporan_cuaca_k3l": 809,
+                                    "id_performance_k3l": 840,
+                                    "id_checklist_administrasi": 840,
+                                    "id_checklist_perlengkapan": 840
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/update_status_detail_hse": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Update status HSE",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::update_status",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_laporan_hse": {
+                                        "type": "string"
+                                    },
+                                    "id_status": {
+                                        "type": "string"
+                                    },
+                                    "id_koor": {
+                                        "type": "string"
+                                    },
+                                    "revision": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_laporan_hse": 834,
+                                    "id_status": 3,
+                                    "id_koor": 36,
+                                    "revision": "revision detail"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/hse/delete_detail_hse": {
+            "post": {
+                "tags": [
+                    "Laporan HSE"
+                ],
+                "summary": "Delete HSE",
+                "operationId": "App\\Http\\Controllers\\LaporanHSEController::delete",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_laporan_hse": {
+                                        "type": "string"
+                                    },
+                                    "id_laporan_cuaca_k3l": {
+                                        "type": "string"
+                                    },
+                                    "id_performanceK3L": {
+                                        "type": "string"
+                                    },
+                                    "id_checklist_administrasi": {
+                                        "type": "string"
+                                    },
+                                    "id_checklist_perlengkapan": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_laporan_hse": 834,
+                                    "id_laporan_cuaca_k3l": 812,
+                                    "id_performanceK3L": 843,
+                                    "id_checklist_administrasi": 843,
+                                    "id_checklist_perlengkapan": 843
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/report/tampil_lokasi_reports": {
+            "post": {
+                "tags": [
+                    "Lokasi Report"
+                ],
+                "summary": "Get all locations",
+                "operationId": "App\\Http\\Controllers\\LokasiReportController::get_all",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/send_notif": {
+            "post": {
+                "tags": [
+                    "Notifikasi"
+                ],
+                "summary": "Send Notification",
+                "operationId": "App\\Http\\Controllers\\NotificationController::send_notif",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "user@mail.com",
+                                    "title": "Notification Title"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/send_notif_update_revisi": {
+            "post": {
+                "tags": [
+                    "Notifikasi"
+                ],
+                "summary": "Send Notification on Revision Update",
+                "operationId": "App\\Http\\Controllers\\NotificationController::send_notif_update_revisi",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Notification Title"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/send_notif_submit": {
+            "post": {
+                "tags": [
+                    "Notifikasi"
+                ],
+                "summary": "Send Notification on submit",
+                "operationId": "App\\Http\\Controllers\\NotificationController::send_notif_submit",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Notification Title"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/lainnya/tampil_version_android": {
+            "post": {
+                "tags": [
+                    "Pendukung Sistem"
+                ],
+                "summary": "Get data",
+                "operationId": "App\\Http\\Controllers\\PendukungSistemController::get",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/formk/tampil_subkategori_form": {
+            "post": {
+                "tags": [
+                    "Sub Kategori Form"
+                ],
+                "summary": "Get data by Id form",
+                "operationId": "App\\Http\\Controllers\\SubKategoriFormController::get_by_id_form",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_form": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_form": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/get_username": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user by username",
+                "operationId": "App\\Http\\Controllers\\UserController::get_username",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "sadewaadmin"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login user",
+                "operationId": "App\\Http\\Controllers\\UserController::login",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "sadewaadmin",
+                                    "password": "12345"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Register new user",
+                "operationId": "App\\Http\\Controllers\\UserController::register",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "id_privilleged": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "sadewaadmin",
+                                    "password": "12345",
+                                    "email": "sadewaflashcom@gmail.com",
+                                    "id_privilleged": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/update_password": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user password",
+                "operationId": "App\\Http\\Controllers\\UserController::update_password",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "sadewaadmin",
+                                    "password": "12345"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/update_signature": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user signature",
+                "operationId": "App\\Http\\Controllers\\UserController::update_signature",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ttd": {
+                                        "type": "string"
+                                    },
+                                    "id_users": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "ttd": "1571931058354_65_sadewaadmin.jpg",
+                                    "id_users": 65
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/update_username": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update username",
+                "operationId": "App\\Http\\Controllers\\UserController::update_username",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "id_users": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "sadewaadmin",
+                                    "id_users": 65
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/viewSignature": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user signature",
+                "operationId": "App\\Http\\Controllers\\UserController::view_signature",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id_users": 65
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/user/tampil_users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get supervisors",
+                "operationId": "App\\Http\\Controllers\\UserController::get_supervisors",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/upload_signature": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Upload user signature image",
+                "operationId": "App\\Http\\Controllers\\UserController::upload_signature",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "API-Key": {
+                "name": "API-Key",
+                "in": "header",
+                "required": false,
+                "schema": {
+                    "type": "String"
+                }
+            },
+            "id": {
+                "name": "id",
+                "in": "path",
+                "required": false,
+                "schema": {
+                    "type": "String"
+                }
+            },
+            "month": {
+                "name": "month",
+                "in": "path",
+                "required": false,
+                "schema": {
+                    "type": "String"
+                }
+            },
+            "year": {
+                "name": "year",
+                "in": "path",
+                "required": false,
+                "schema": {
+                    "type": "String"
+                }
+            }
+        }
+    }
+}

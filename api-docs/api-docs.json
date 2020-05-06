@@ -1,0 +1,77 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Covid Dashboard API",
+        "license": {
+            "name": "ITS"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4500",
+            "description": "Api server"
+        }
+    ],
+    "paths": {
+        "/user/api/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User login",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/API-Key"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "sugandi",
+                                    "password": "password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "API-Key": {
+                "name": "API-Key",
+                "in": "header",
+                "required": false,
+                "schema": {
+                    "type": "String"
+                }
+            },
+            "id": {
+                "name": "id",
+                "in": "path",
+                "required": false,
+                "schema": {
+                    "type": "String"
+                }
+            }
+        }
+    }
+}

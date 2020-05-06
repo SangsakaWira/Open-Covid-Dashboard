@@ -94,3 +94,27 @@ exports.createUser = (req, res) => {
     username: req.session.username
   })
 }
+
+exports.apiLogin = (req, res) => {
+  user.findOne(
+    {
+      $or: [{ username: req.body.username }, { email: req.body.username }]
+    },
+    (err, doc) => {
+      if (err) {
+        res.send({ status: 0, message: "Error" })
+      } else {
+        if (doc != null) {
+          if (bcrypt.compareSync(req.body.password, doc.password)) {
+            const { password, ...data } = doc._doc
+            res.send({ status: 1, message: "Success", data })
+          } else {
+            res.send({ status: 0, message: "Wrong password" })
+          }
+        } else {
+          res.send({ status: 0, message: "User not found" })
+        }
+      }
+    }
+  )
+}

@@ -35,6 +35,7 @@ Buat file .env dan contoh isi file:
 
 ```
 API_KEY=secretkeydarimapbox
+API_ACCESS_KEY=important_key_to_access_api_so_get_it_from_the_devs
 PORT=4500
 HOST_PRODUK=http://covid-dashboard-its
 HOST_DEV=http://localhost:3000

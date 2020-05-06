@@ -1,3 +1,4 @@
+const fs = require("fs")
 const express = require("express")
 const session = require("express-session")
 const app = express()
@@ -85,6 +86,11 @@ app.use(express.static(path.join(__dirname, "public")))
 
 app.get("/", (req, res) => {
   res.redirect("/page/covid-19")
+})
+
+// Swagger UI
+app.get("/docs", (req, res) => {
+  res.sendFile("views/swagger-ui/index.html", { root: __dirname })
 })
 
 app.use(flash())
