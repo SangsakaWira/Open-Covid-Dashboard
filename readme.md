@@ -1,6 +1,8 @@
-# Universal Covid-19 Dashboard
+# Open Covid-19 Dashboard
 
-Dashboard monitoring dan reporting untuk persiapan pandemi covid-19.
+Dashboard monitoring dan reporting untuk persiapan pandemi covid-19. Digunakan
+untuk rumah sakit, puskesmas, kantor dan instansi lainnya yang ingin melakukan
+tracking kondisi kesehatan pasien/pegawai dan melakukan pencegahan.
 
 ## Sistem ini support:
 1. Status Pasien.
@@ -9,13 +11,13 @@ Dashboard monitoring dan reporting untuk persiapan pandemi covid-19.
 4. lainnya.
 
 ### Login Page
-![Cork Admin Login](Login-Page.PNG)
+![Cork Admin Login](LOGO_ITS_DASHBOARD.PNG)
 
 ### Dashboard
-![Cork Admin Dashboard](dashboard.PNG)
+![Cork Admin Dashboard](Login-Page.PNG)
 
 ### Custom Logo
-![Cork Admin Login](LOGO_ITS_DASHBOARD.PNG)
+![Cork Admin Login](dashboard.PNG)
 
 ## Dokumentasi
 
@@ -28,7 +30,7 @@ Download node.js terlebih dahulu.
 
 ```
 git clone https://github.com/SangsakaWira/Universal-Covid-19-Dashboard.git
-cd Universal-Covid-19-Dashboard
+cd Open-Covid-19-Dashboard
 npm install
 ```
 Buat file .env dan contoh isi file:
