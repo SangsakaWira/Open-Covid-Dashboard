@@ -11,13 +11,11 @@ tracking kondisi kesehatan pasien/pegawai dan melakukan pencegahan.
 4. lainnya.
 
 ### Login Page
-![Cork Admin Login](LOGO_ITS_DASHBOARD.PNG)
+![Cork Admin Login](DASHBOARD.PNG)
 
-### Dashboard
-![Cork Admin Dashboard](Login-Page.PNG)
+### Dashboard Page
+![Cork Admin Login](LOGIN.PNG)
 
-### Custom Logo
-![Cork Admin Login](dashboard.PNG)
 
 ## Dokumentasi
 
