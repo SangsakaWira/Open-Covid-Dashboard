@@ -48,18 +48,6 @@ exports.passwordRecovery = (req, res) => {
 }
 
 // Pasien Page
-exports.pasienMdrTbPage = (req, res) => {
-  pasienTBC.find((err, doc) => {
-    if (err) res.send(err)
-    res.render("pasien/pasien-mdr", {
-      title: "TBC",
-      isLoggedIn: req.session.isLoggedIn,
-      username: req.session.username,
-      data: doc
-    })
-  })
-}
-
 exports.pasienCovidPage = (req, res) => {
   pasienCovid
     .find()
@@ -75,37 +63,19 @@ exports.pasienCovidPage = (req, res) => {
     })
 }
 
-exports.tambahPasienMdrTbPage = (req, res) => {
-  res.render("pasien/tambah-mdr", {
-    title: "Tambah TBC",
-    isLoggedIn: req.session.isLoggedIn,
-    username: req.session.username
-  })
-}
-
 exports.tambahPasienCovidPage = async (req, res) => {
   const doctors = await dokter.find()
   res.render("pasien/tambah-covid", {
     title: "Tambah COVID-19",
     isLoggedIn: req.session.isLoggedIn,
     username: req.session.username,
+    apiMap: process.env.API_KEY,
+    hostMap: process.env.HOST,
     doctors
   })
 }
 
 // Detail Pasien
-exports.pasienTbDetailPage = (req, res) => {
-  pasienTBC.findById(req.params.id, (err, doc) => {
-    console.log(doc)
-    res.render("detail/detail-pasien-tb", {
-      title: "Detail Pasien TBC",
-      isLoggedIn: req.session.isLoggedIn,
-      username: req.session.username,
-      data: doc
-    })
-  })
-}
-
 exports.pasienCovidDetailPage = async (req, res) => {
   pasienCovid.findById(req.params.id, (err, doc) => {
     res.render("detail/detail-pasien-covid", {
@@ -120,18 +90,6 @@ exports.pasienCovidDetailPage = async (req, res) => {
 }
 
 // Edit
-exports.editPasienTBC = (req, res) => {
-  pasienTBC.findById(req.params.id, (err, doc) => {
-    console.log(doc)
-    res.render("edit/edit-pasien-tbc", {
-      title: "Edit Pasien TBC",
-      isLoggedIn: req.session.isLoggedIn,
-      username: req.session.username,
-      data: doc
-    })
-  })
-}
-
 exports.editPasienCOVID = async (req, res) => {
   const doctors = await dokter.find()
   pasienCovid.findById(req.params.id, (err, doc) => {
@@ -211,32 +169,6 @@ exports.covidPage = async (req, res) => {
     })
 }
 
-exports.mdrTbPage = async (req, res) => {
-  records.find(
-    {
-      status: "Belum Minum",
-      time: new Date().toLocaleDateString()
-    },
-    (err, data) => {
-      pasienTBC.find((err, doc) => {
-        res.render("dashboard/mdr-tb", {
-          title: "MDR-TB",
-          username: req.session.username,
-          isLoggedIn: req.session.isLoggedIn,
-          data: data,
-          pasien: doc,
-          zone: {
-            lat: -3.042884,
-            long: 104.283449
-          },
-          apiMap: process.env.API_KEY,
-          hostMap: process.env.HOST
-        })
-      })
-    }
-  )
-}
-
 // Lokasi Page
 exports.lokasiPage = (req, res) => {
   pasienCovid.find((err, doc) => {
@@ -306,7 +238,9 @@ exports.kebutuhanPage = (req, res) => {
       zone: {
         lat: -3.042884,
         long: 104.283449
-      }
+      },
+      apiMap: process.env.API_KEY,
+      hostMap: process.env.HOST
     })
   })
 }
@@ -361,6 +295,8 @@ exports.kabupatenPage = (req, res) => {
     zone: {
       lat: -3.042884,
       long: 104.283449
-    }
+    },
+    apiMap: process.env.API_KEY,
+    hostMap: process.env.HOST
   })
 }
