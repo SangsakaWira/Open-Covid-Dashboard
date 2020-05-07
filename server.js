@@ -15,7 +15,6 @@ require("dotenv").config()
 
 const port = process.env.PORT || 3000
 
-// const URI = "mongodb+srv://sangsakawira:Forz4tano@cluster0-uwwji.mongodb.net/auth-app?retryWrites=true&w=majority";
 const URI = "mongodb://localhost/audiometer-online"
 
 const userRouter = require("./routes/user")
