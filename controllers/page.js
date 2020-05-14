@@ -58,6 +58,7 @@ exports.pasienCovidPage = (req, res) => {
         title: "COVID-19",
         isLoggedIn: req.session.isLoggedIn,
         username: req.session.username,
+        apiMap: process.env.API_KEY,
         data: doc
       })
     })
