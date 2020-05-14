@@ -9,8 +9,12 @@
     },
     "servers": [
         {
+            "url": "http://covid-dashboard-its.id",
+            "description": "API server"
+        },
+        {
             "url": "http://localhost:4500",
-            "description": "Api server"
+            "description": "Local server"
         }
     ],
     "paths": {
@@ -67,7 +71,7 @@
             "id": {
                 "name": "id",
                 "in": "path",
-                "required": false,
+                "required": true,
                 "schema": {
                     "type": "string"
                 }
