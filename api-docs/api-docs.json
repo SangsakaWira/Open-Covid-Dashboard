@@ -353,8 +353,7 @@
       "API-Key": {
         "type": "apiKey",
         "name": "API-Key",
-        "in": "header",
-        "required": true
+        "in": "header"
       }
     }
   }
