@@ -35,18 +35,18 @@ exports.createPasien = async (req, res) => {
 
 exports.findAllPasien = (req, res) => {
   pasien.find((err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }
 
 exports.findPasienById = (req, res) => {
   pasien.findById(req.params.id, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send([doc])
+      res.send({ status: 1, data: [doc] })
     }
   })
 }
@@ -67,6 +67,22 @@ exports.updatePasienById = (req, res) => {
   )
 }
 
+exports.apiUpdatePasienById = (req, res) => {
+  pasien.findOneAndUpdate(
+    { _id: req.body._id },
+    {
+      ...req.body
+    },
+    { new: true },
+    (err, doc) => {
+      if (err) res.send({ status: 0, err })
+      else {
+        res.send({ status: 1, data: doc })
+      }
+    }
+  )
+}
+
 exports.findAllPasienByJenis = (req, res) => {
   if (err) res.send({ err })
   else {
@@ -76,63 +92,63 @@ exports.findAllPasienByJenis = (req, res) => {
 
 exports.findAllPasienPDP = (req, res) => {
   pasien.find({ kategori: "PDP" }, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }
 
 exports.findAllPasienODP = (req, res) => {
   pasien.find({ kategori: "ODP" }, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }
 
 exports.findAllPasienOTG = (req, res) => {
   pasien.find({ kategori: "OTG" }, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }
 
 exports.findAllPasienSembuh = (req, res) => {
   pasien.find({ status_sembuh: "Sembuh" }, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }
 
 exports.findAllPasienPositif = (req, res) => {
   pasien.find({ kategori: "Positif" }, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }
 
 exports.findAllPasienMeninggal = (req, res) => {
   pasien.find({ status_hidup: "Meninggal" }, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }
 
 exports.findAllPasienHidup = (req, res) => {
   pasien.find({ status_hidup: "Hidup" }, (err, doc) => {
-    if (err) res.send({ err })
+    if (err) res.send({ status: 0, err })
     else {
-      res.send(doc)
+      res.send({ status: 1, data: doc })
     }
   })
 }

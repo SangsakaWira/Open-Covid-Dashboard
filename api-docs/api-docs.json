@@ -1,81 +1,361 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Covid Dashboard API",
-        "license": {
-            "name": "ITS"
-        },
-        "version": "1.0.0"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Covid Dashboard API",
+    "license": {
+      "name": "ITS"
     },
-    "servers": [
-        {
-            "url": "http://covid-dashboard-its.id",
-            "description": "API server"
-        },
-        {
-            "url": "http://localhost:4500",
-            "description": "Local server"
-        }
-    ],
-    "paths": {
-        "/user/api/login": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "User login",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/API-Key"
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "username": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "username": "sugandi",
-                                    "password": "password"
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        }
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://covid-dashboard-its.id",
+      "description": "API server"
     },
-    "components": {
-        "parameters": {
-            "API-Key": {
-                "name": "API-Key",
-                "in": "header",
-                "required": false,
-                "schema": {
-                    "type": "string"
-                }
-            },
-            "id": {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "schema": {
-                    "type": "string"
-                }
-            }
-        }
+    {
+      "url": "http://localhost:4500",
+      "description": "Local server"
     }
+  ],
+  "paths": {
+    "/user/api/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "username": "sugandi",
+                  "password": "password"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/findAllPasien": {
+      "get": {
+        "tags": ["Dokter"],
+        "summary": "Get all registered patients",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/findPasienById/{id}": {
+      "get": {
+        "tags": ["Dokter"],
+        "summary": "Get specific patient data",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/findAllPasienSembuh": {
+      "get": {
+        "tags": ["Dokter"],
+        "summary": "Get all recovered patients",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/findAllPasienPositif": {
+      "get": {
+        "tags": ["Dokter"],
+        "summary": "Get all confirmed positive patients",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/findAllPasienODP": {
+      "get": {
+        "tags": ["Dokter"],
+        "summary": "Get all ODP patients",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/findAllPasienPDP": {
+      "get": {
+        "tags": ["Dokter"],
+        "summary": "Get all PDP patients",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/findAllPasienOTG": {
+      "get": {
+        "tags": ["Dokter"],
+        "summary": "Get all OTG patients",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/API-Key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/pasienCovid/api/updatePasienById": {
+      "post": {
+        "tags": ["Dokter"],
+        "summary": "Update patient data by it's id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "_id": {
+                    "type": "string"
+                  },
+                  "nama": {
+                    "type": "string"
+                  },
+                  "umur": {
+                    "type": "string"
+                  },
+                  "berat_badan": {
+                    "type": "string"
+                  },
+                  "tinggi_badan": {
+                    "type": "string"
+                  },
+                  "jenis_kelamin": {
+                    "type": "string"
+                  },
+                  "alamat": {
+                    "type": "string"
+                  },
+                  "no_hp": {
+                    "type": "string"
+                  },
+                  "lat": {
+                    "type": "string"
+                  },
+                  "emergency": {
+                    "type": "string"
+                  },
+                  "long": {
+                    "type": "string"
+                  },
+                  "kabupaten": {
+                    "type": "string"
+                  },
+                  "provinsi": {
+                    "type": "string"
+                  },
+                  "kategori": {
+                    "type": "string"
+                  },
+                  "tahap": {
+                    "type": "string"
+                  },
+                  "dewasa_anak": {
+                    "type": "string"
+                  },
+                  "batuk": {
+                    "type": "string"
+                  },
+                  "keadaan_khusus": {
+                    "type": "string"
+                  },
+                  "gejala": {
+                    "type": "string"
+                  },
+                  "demam": {
+                    "type": "string"
+                  },
+                  "lemas": {
+                    "type": "string"
+                  },
+                  "mual": {
+                    "type": "string"
+                  },
+                  "pusing": {
+                    "type": "string"
+                  },
+                  "sesak": {
+                    "type": "string"
+                  },
+                  "skala": {
+                    "type": "string"
+                  },
+                  "nama_pendamping": {
+                    "type": "string"
+                  },
+                  "no_hp_pendamping": {
+                    "type": "string"
+                  },
+                  "status_hidup": {
+                    "type": "string"
+                  },
+                  "status_sembuh": {
+                    "type": "string"
+                  },
+                  "status_lokasi": {
+                    "type": "string"
+                  },
+                  "keterangan": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "_id": "5eaf544d7d4cb77d44acca7d",
+                  "nama": "Fulan Doe",
+                  "umur": "25",
+                  "berat_badan": "75",
+                  "tinggi_badan": "175",
+                  "jenis_kelamin": "Pria",
+                  "alamat": "Sidotopo",
+                  "no_hp": "081234234235",
+                  "lat": "-3.321369718813841",
+                  "emergency": "",
+                  "long": "104.16365398723292",
+                  "kabupaten": "Surabaya",
+                  "provinsi": "Jawa Timur",
+                  "kategori": "ODP",
+                  "tahap": "Awal",
+                  "dewasa_anak": "dewasa",
+                  "batuk": "tidak",
+                  "keadaan_khusus": "",
+                  "gejala": "tidak",
+                  "demam": "tidak",
+                  "lemas": "tidak",
+                  "mual": "ya",
+                  "pusing": "ya",
+                  "sesak": "tidak",
+                  "skala": "tidak",
+                  "nama_pendamping": "Juki San",
+                  "no_hp_pendamping": "08241234234",
+                  "status_hidup": "Hidup",
+                  "status_sembuh": "Belum Sembuh",
+                  "keterangan": ""
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "API-Key": {
+        "name": "API-Key",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "id": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "API-Key": {
+        "type": "apiKey",
+        "name": "API-Key",
+        "in": "header",
+        "required": true
+      }
+    }
+  }
 }

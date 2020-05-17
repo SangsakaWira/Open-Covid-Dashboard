@@ -4,26 +4,67 @@ const isAuth = require("../config/auth")
 const isOperator = require("../config/isOperator")
 const router = express.Router()
 const pasienController = require("../controllers/pasienCOVID")
+const { apiMiddleware } = require("../config/middleware")
 const upload = multer()
 
 // Router
 router.post("/createPasien", upload.single(), pasienController.createPasien)
-router.get("/findAllPasien", pasienController.findAllPasien)
-router.get("/findPasienById/:id", pasienController.findPasienById)
 router.post("/updatePasienById", pasienController.updatePasienById)
+
+// API routes
+router.get("/api/findAllPasien", apiMiddleware, pasienController.findAllPasien)
 router.get(
-  "/findAllPasienByJenis/:jenis",
+  "/api/findPasienById/:id",
+  apiMiddleware,
+  pasienController.findPasienById
+)
+router.get(
+  "/api/findAllPasienByJenis/:jenis",
+  apiMiddleware,
   pasienController.findAllPasienByJenis
 )
-router.post("/deletePasienById", pasienController.deletePasienById)
+router.post(
+  "/api/deletePasienById",
+  apiMiddleware,
+  pasienController.deletePasienById
+)
+router.post(
+  "/api/updatePasienById",
+  apiMiddleware,
+  pasienController.apiUpdatePasienById
+)
 
 // Router FindWithFilter
-router.get("/findAllPasienSembuh", pasienController.findAllPasienSembuh)
-router.get("/findAllPasienMeninggal", pasienController.findAllPasienMeninggal)
-router.get("/findAllPasienPositif", pasienController.findAllPasienPositif)
-router.get("/findAllPasienPDP", pasienController.findAllPasienPDP)
-router.get("/findAllPasienODP", pasienController.findAllPasienODP)
-router.get("/findAllPasienOTG", pasienController.findAllPasienOTG)
+router.get(
+  "/api/findAllPasienSembuh",
+  apiMiddleware,
+  pasienController.findAllPasienSembuh
+)
+router.get(
+  "/api/findAllPasienMeninggal",
+  apiMiddleware,
+  pasienController.findAllPasienMeninggal
+)
+router.get(
+  "/api/findAllPasienPositif",
+  apiMiddleware,
+  pasienController.findAllPasienPositif
+)
+router.get(
+  "/api/findAllPasienPDP",
+  apiMiddleware,
+  pasienController.findAllPasienPDP
+)
+router.get(
+  "/api/findAllPasienODP",
+  apiMiddleware,
+  pasienController.findAllPasienODP
+)
+router.get(
+  "/api/findAllPasienOTG",
+  apiMiddleware,
+  pasienController.findAllPasienOTG
+)
 
 // Find Pasien Global
 router.get("/findAllPasienGlobal", pasienController.findAllPasienGlobal)
