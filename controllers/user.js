@@ -107,7 +107,7 @@ exports.apiLogin = (req, res) => {
         if (doc != null) {
           if (bcrypt.compareSync(req.body.password, doc.password)) {
             const { password, ...data } = doc._doc
-            res.send({ status: 1, message: "Success", data })
+            res.send({ status: 1, message: "Success", user: data })
           } else {
             res.send({ status: 0, message: "Wrong password" })
           }
