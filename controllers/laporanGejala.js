@@ -20,15 +20,17 @@ exports.findByIdPasien = async (req, res) => {
   const patient = await PasienCovid.findOne({
     id_user: req.body.authenticatedId
   })
-  LaporanGejala.find({ id_pasien: patient._id }, (err, docs) => {
-    if (err) res.send({ err })
-    else {
-      res.send({
-        status: 1,
-        data: docs
-      })
-    }
-  })
+  if (patient) {
+    LaporanGejala.find({ id_pasien: patient._id }, (err, docs) => {
+      if (err) res.send({ err })
+      else {
+        res.send({
+          status: 1,
+          data: docs
+        })
+      }
+    })
+  } else res.send({ status: 0, message: "Invalid user" })
 }
 
 exports.findById = async (req, res) => {
