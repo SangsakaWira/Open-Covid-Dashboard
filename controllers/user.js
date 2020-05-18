@@ -118,3 +118,34 @@ exports.apiLogin = (req, res) => {
     }
   )
 }
+
+exports.apiChangePassword = (req, res) => {
+  user.findById(req.body.authenticatedId, (error, doc) => {
+    if (error) res.send({ status: 0, error })
+    else if (!doc) res.send({ status: 0, message: "User not found" })
+    else {
+      if (bcrypt.compareSync(req.body.old_password, doc.password)) {
+        doc.password = bcrypt.hashSync(req.body.new_password, salt)
+        doc.save(error => {
+          if (error) res.send({ status: 0, error })
+          else res.send({ status: 1, message: "Password changed" })
+        })
+      } else res.send({ status: 0, message: "Invalid old password" })
+    }
+  })
+}
+
+exports.apiUpdate = (req, res) => {
+  user.findById(req.body.authenticatedId, (error, doc) => {
+    if (error) res.send({ status: 0, error })
+    else if (!doc) res.send({ status: 0, message: "User not found" })
+    else {
+      doc.username = req.body.username
+      doc.email = req.body.email
+      doc.save(error => {
+        if (error) res.send({ status: 0, error })
+        else res.send({ status: 1, message: "Data updated" })
+      })
+    }
+  })
+}

@@ -55,6 +55,88 @@
         ]
       }
     },
+    "/user/api/changePassword": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Change user password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "old_password": {
+                    "type": "string"
+                  },
+                  "new_password": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5ead27774d854cf59188debe",
+                  "old_password": "password",
+                  "new_password": "newpassword"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/user/api/update": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Update user data",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5ead27774d854cf59188debe",
+                  "username": "sugandi",
+                  "email": "sugandi@gmail.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
     "/pasienCovid/api/findAllPasien": {
       "get": {
         "tags": ["Dokter"],
@@ -180,7 +262,7 @@
     "/pasienCovid/api/updatePasienById": {
       "post": {
         "tags": ["Dokter"],
-        "summary": "Update patient data by it's id",
+        "summary": "Update patient data by its id",
         "requestBody": {
           "content": {
             "application/json": {

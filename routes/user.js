@@ -11,5 +11,11 @@ router.get("/logout", userController.logout)
 
 router.post("createUser", userController.createUser)
 router.post("/api/login", apiMiddleware, userController.apiLogin)
+router.post(
+  "/api/changePassword",
+  apiMiddleware,
+  userController.apiChangePassword
+)
+router.post("/api/update", apiMiddleware, userController.apiUpdate)
 
 module.exports = router
