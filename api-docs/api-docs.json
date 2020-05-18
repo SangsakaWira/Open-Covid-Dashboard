@@ -328,6 +328,244 @@
           }
         ]
       }
+    },
+    "/laporanGejala/api/create": {
+      "post": {
+        "tags": ["Pasien - Laporan Gejala"],
+        "summary": "Create symptomps report",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "batuk": {
+                    "type": "string"
+                  },
+                  "demam": {
+                    "type": "string"
+                  },
+                  "lemas": {
+                    "type": "string"
+                  },
+                  "mual": {
+                    "type": "string"
+                  },
+                  "pusing": {
+                    "type": "string"
+                  },
+                  "sesak": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7b",
+                  "batuk": "tidak",
+                  "demam": "ya",
+                  "lemas": "tidak",
+                  "mual": "tidak",
+                  "pusing": "tidak",
+                  "sesak": "ya"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/laporanGejala/api/findByIdPasien": {
+      "post": {
+        "tags": ["Pasien - Laporan Gejala"],
+        "summary": "Get symptomps report of a patient",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7b"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/laporanGejala/api/findById": {
+      "post": {
+        "tags": ["Pasien - Laporan Gejala"],
+        "summary": "Get symptomps report by its id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7b",
+                  "id": "5ec1bd6b21426373cf0723a8"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/laporanKebutuhan/api/create": {
+      "post": {
+        "tags": ["Pasien - Laporan Kebutuhan"],
+        "summary": "Create patient's needs report",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "jenis_kebutuhan": {
+                    "type": "string"
+                  },
+                  "keterangan": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7b",
+                  "jenis_kebutuhan": "Logistik",
+                  "keterangan": "Membutuhkan pasokan makanan bergizi"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/laporanKebutuhan/api/findByIdPasien": {
+      "post": {
+        "tags": ["Pasien - Laporan Kebutuhan"],
+        "summary": "Get needs report data of a patient",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7b"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/laporanKebutuhan/api/findById": {
+      "post": {
+        "tags": ["Pasien - Laporan Kebutuhan"],
+        "summary": "Get needs report data by its id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7b",
+                  "id": "5ec1e3f8b6a50f8e28c75a62"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
     }
   },
   "components": {

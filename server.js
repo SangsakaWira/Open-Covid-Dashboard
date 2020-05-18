@@ -22,6 +22,8 @@ const pageRouter = require("./routes/page")
 const kebutuhanRouter = require("./routes/kebutuhan")
 const pasienCovidRouter = require("./routes/pasienCOVID")
 const emergencyRouter = require("./routes/emergency")
+const laporanGejalaRouter = require("./routes/laporanGejala")
+const laporanKebutuhanRouter = require("./routes/laporanKebutuhan")
 
 const records = require("./models/records")
 const pasien = require("./models/pasienCovid")
@@ -108,10 +110,12 @@ app.use("/page", pageRouter)
 app.use("/kebutuhan", kebutuhanRouter)
 app.use("/pasienCovid", pasienCovidRouter)
 app.use("/emergency", emergencyRouter)
+app.use("/laporanGejala", laporanGejalaRouter)
+app.use("/laporanKebutuhan", laporanKebutuhanRouter)
 
 // app.get("/500", errorController.get500)
 
-app.use(errorController.get404);
+app.use(errorController.get404)
 
 // app.use((error, req, res, next) => {
 //   // res.status(error.httpStatusCode).render(...);
