@@ -612,6 +612,39 @@
         ]
       }
     },
+    "/pasienCovid/api/findPasienByPendamping": {
+      "post": {
+        "tags": ["Pendamping"],
+        "summary": "Get patient data by patient's companion id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7c"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
     "/laporanKebutuhan/api/findById": {
       "post": {
         "tags": ["Pasien - Laporan Kebutuhan"],
@@ -632,6 +665,104 @@
                 "example": {
                   "authenticatedId": "5eaf544d7d4cb77d44acca7b",
                   "id": "5ec1e3f8b6a50f8e28c75a62"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/laporanGejala/api/pendampingCreate": {
+      "post": {
+        "tags": ["Pendamping"],
+        "summary": "Create symptomps report by patient's companion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "batuk": {
+                    "type": "string"
+                  },
+                  "demam": {
+                    "type": "string"
+                  },
+                  "lemas": {
+                    "type": "string"
+                  },
+                  "mual": {
+                    "type": "string"
+                  },
+                  "pusing": {
+                    "type": "string"
+                  },
+                  "sesak": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7c",
+                  "batuk": "tidak",
+                  "demam": "ya",
+                  "lemas": "tidak",
+                  "mual": "tidak",
+                  "pusing": "tidak",
+                  "sesak": "ya"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
+    "/laporanKebutuhan/api/pendampingCreate": {
+      "post": {
+        "tags": ["Pendamping"],
+        "summary": "Create patient's needs report by patient's companion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  },
+                  "jenis_kebutuhan": {
+                    "type": "string"
+                  },
+                  "keterangan": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5eaf544d7d4cb77d44acca7c",
+                  "jenis_kebutuhan": "Logistik",
+                  "keterangan": "Membutuhkan pasokan makanan bergizi"
                 }
               }
             }

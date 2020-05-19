@@ -10,7 +10,22 @@ exports.create = async (req, res) => {
       { id_pasien: patient._id, ...req.body },
       (error, doc) => {
         if (error) res.send({ status: 0, error })
-        else res.send({ status: 1, message: "Succes" })
+        else res.send({ status: 1, message: "Success" })
+      }
+    )
+  } else res.send({ status: 0, message: "Invalid user" })
+}
+
+exports.pendampingCreate = async (req, res) => {
+  const patient = await PasienCovid.findOne({
+    pendamping: req.body.authenticatedId
+  })
+  if (patient) {
+    LaporanKebutuhan.create(
+      { id_pasien: patient._id, ...req.body },
+      (error, doc) => {
+        if (error) res.send({ status: 0, error })
+        else res.send({ status: 1, message: "Success" })
       }
     )
   } else res.send({ status: 0, message: "Invalid user" })

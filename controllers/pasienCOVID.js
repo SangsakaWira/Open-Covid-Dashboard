@@ -153,6 +153,15 @@ exports.findAllPasienHidup = (req, res) => {
   })
 }
 
+exports.findPasienByPendamping = (req, res) => {
+  pasien.find({ pendamping: req.body.authenticatedId }, (err, doc) => {
+    if (err) res.send({ status: 0, err })
+    else {
+      res.send({ status: 1, data: doc })
+    }
+  })
+}
+
 // Find Pasien Global
 // router.get("/findAllPasienGlobal",isAuth,pasienController.findAllPasienGlobal);
 exports.findAllPasienGlobal = (req, res) => {

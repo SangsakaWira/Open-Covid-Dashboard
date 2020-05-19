@@ -6,6 +6,11 @@ const { apiMiddleware } = require("../config/middleware")
 // Router
 router.post("/api/create", apiMiddleware, laporanGejalaController.create)
 router.post(
+  "/api/pendampingCreate",
+  apiMiddleware,
+  laporanGejalaController.pendampingCreate
+)
+router.post(
   "/api/findByIdPasien",
   apiMiddleware,
   laporanGejalaController.findByIdPasien

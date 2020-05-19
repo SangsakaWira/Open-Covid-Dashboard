@@ -33,6 +33,11 @@ router.post(
   apiMiddleware,
   pasienController.apiUpdatePasienById
 )
+router.post(
+  "/api/findPasienByPendamping",
+  apiMiddleware,
+  pasienController.findPasienByPendamping
+)
 
 // Router FindWithFilter
 router.get(
