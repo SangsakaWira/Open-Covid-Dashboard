@@ -86,13 +86,13 @@
                                                 Jenis Kelamin: <%= data.jenis_kelamin %>
                                             </li>
                                             <li class="contacts-block__item" style="text-align: center;">
-                                                Umur: <%= data.umur %>
+                                                Umur: <%= data.umur %> tahun
                                             </li>
                                             <li class="contacts-block__item" style="text-align: center;">
-                                                Berat Badan: <%= data.berat_badan %>
+                                                Berat Badan: <%= data.berat_badan %> Kg
                                             </li>
                                             <li class="contacts-block__item" style="text-align: center;">
-                                                Tinggi Badan: <%= data.tinggi_badan %>
+                                                Tinggi Badan: <%= data.tinggi_badan %> Cm
                                             </li>
                                             <li class="contacts-block__item" style="text-align: center;">
                                                 Kabupaten: <%= data.kabupaten %>
@@ -112,46 +112,58 @@
                             </div>
                         </div>
 
-                        <div class="education layout-spacing ">
+                        <div class="work-experience layout-spacing ">
                             <div class="widget-content widget-content-area">
-                                <h3 class="">Riwayat</h3>
+                                <h3 class="">Riwayat Gejala</h3>
                                 <div class="timeline-alter">
-                                    <div class="item-timeline">
-                                        <div class="t-meta-date">
-                                            <p class="">04 Mar 2009</p>
-                                        </div>
-                                        <div class="t-dot">
-                                        </div>
-                                        <div class="t-text">
-                                            <p>Pasien Baru</p>
-                                        </div>
-                                    </div>
+                                  <% if (historyGejala.length > 0) { %>
+                                    <% for (let i = 0; i < historyGejala.length; i++) { %>
+                                      <div class="item-timeline">
+                                          <div class="t-meta-date">
+                                            <p class=""><%- moment(historyGejala[i].time).format("DD-MM-YYYY HH:mm") %> </p>
+                                          </div>
+                                          <div class="t-dot">
+                                          </div>
+                                          <div class="t-text">
+                                            <p>Batuk: <%= historyGejala[i].batuk %></p>
+                                            <p>Demam: <%= historyGejala[i].demam %></p>
+                                            <p>Lemas: <%= historyGejala[i].lemas %></p>
+                                            <p>Mual: <%= historyGejala[i].mual %></p>
+                                            <p>Pusing: <%= historyGejala[i].pusing %></p>
+                                            <p>Sesak: <%= historyGejala[i].sesak %></p>
+                                          </div>
+                                      </div>
+                                    <% } %>
+                                  <% } else { %>
+                                    <div class="item-timeline" style="margin-top: -20px;">Data riwayat gejala kosong.</div>
+                                  <% } %>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="work-experience layout-spacing ">
-
+                        <div class="education layout-spacing ">
                             <div class="widget-content widget-content-area">
-
-                                <h3 class="">Gejala</h3>
-
+                                <h3 class="">Riwayat Kebutuhan</h3>
                                 <div class="timeline-alter">
-
-                                    <div class="item-timeline">
-                                        <div class="t-meta-date">
-                                            <p class="">04 Mar 2009</p>
-                                        </div>
-                                        <div class="t-dot">
-                                        </div>
-                                        <div class="t-text">
-                                            <p>Batuk</p>
-                                        </div>
-                                    </div>
-
+                                  <% if (historyKebutuhan.length > 0) { %>
+                                    <% for (let i = 0; i < historyKebutuhan.length; i++) { %>
+                                      <div class="item-timeline">
+                                          <div class="t-meta-date">
+                                            <p class=""><%- moment(historyKebutuhan[i].time).format("DD-MM-YYYY HH:mm") %> </p>
+                                          </div>
+                                          <div class="t-dot">
+                                          </div>
+                                          <div class="t-text">
+                                            <p>[<%= historyKebutuhan[i].jenis_kebutuhan %>]</p>
+                                            <p><%= historyKebutuhan[i].keterangan %></p>
+                                          </div>
+                                      </div>
+                                    <% } %>
+                                  <% } else { %>
+                                    <div class="item-timeline" style="margin-top: -20px;">Data riwayat kebutuhan kosong.</div>
+                                  <% } %>
                                 </div>
                             </div>
-
                         </div>
 
                     </div>

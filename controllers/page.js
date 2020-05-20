@@ -1,8 +1,11 @@
+const moment = require("moment")
 const kebutuhan = require("../models/kebutuhan")
 const pasienCovid = require("../models/pasienCovid")
 const dokter = require("../models/dokter")
 const records = require("../models/records")
 const emergency = require("../models/emergency")
+const laporanGejala = require("../models/laporanGejala")
+const laporanKebutuhan = require("../models/laporanKebutuhan")
 
 // Auth Page
 exports.loginPage = (req, res) => {
@@ -78,14 +81,23 @@ exports.tambahPasienCovidPage = async (req, res) => {
 
 // Detail Pasien
 exports.pasienCovidDetailPage = async (req, res) => {
-  pasienCovid.findById(req.params.id, (err, doc) => {
+  pasienCovid.findById(req.params.id, async (err, doc) => {
+    const historyGejala = await laporanGejala
+      .find({ id_pasien: doc._id })
+      .sort("-time")
+    const historyKebutuhan = await laporanKebutuhan
+      .find({ id_pasien: doc._id })
+      .sort("-time")
     res.render("detail/detail-pasien-covid", {
       title: "Detail Pasien COVID-19",
       isLoggedIn: req.session.isLoggedIn,
       username: req.session.username,
       data: doc,
       apiMap: process.env.API_KEY,
-      hostMap: process.env.HOST
+      hostMap: process.env.HOST,
+      moment,
+      historyGejala,
+      historyKebutuhan
     })
   })
 }
@@ -98,6 +110,7 @@ exports.editPasienCOVID = async (req, res) => {
       title: "Detail Pasien Covid-19",
       isLoggedIn: req.session.isLoggedIn,
       username: req.session.username,
+      apiMap: process.env.API_KEY,
       data: doc,
       doctors
     })
