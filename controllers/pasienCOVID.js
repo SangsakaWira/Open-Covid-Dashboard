@@ -33,6 +33,13 @@ exports.createPasien = async (req, res) => {
   )
 }
 
+exports.getProfile = (req, res) => {
+  pasien.findOne({ id_user: req.body.authenticatedId }, (error, doc) => {
+    if (error) res.send({ status: 0, error })
+    else res.send({ status: 1, data: doc })
+  })
+}
+
 exports.findAllPasien = (req, res) => {
   pasien.find((err, doc) => {
     if (err) res.send({ status: 0, err })

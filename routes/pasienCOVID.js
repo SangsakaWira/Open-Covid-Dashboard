@@ -12,6 +12,7 @@ router.post("/createPasien", upload.single(), pasienController.createPasien)
 router.post("/updatePasienById", pasienController.updatePasienById)
 
 // API routes
+router.post("/api/getProfile", apiMiddleware, pasienController.getProfile)
 router.get("/api/findAllPasien", apiMiddleware, pasienController.findAllPasien)
 router.get(
   "/api/findPasienById/:id",

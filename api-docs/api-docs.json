@@ -411,6 +411,39 @@
         ]
       }
     },
+    "/pasienCovid/api/getProfile": {
+      "post": {
+        "tags": ["Pasien"],
+        "summary": "Get patient's data",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "authenticatedId": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "example": {
+                  "authenticatedId": "5ec1e9ff5b52f490abf2722d"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "API-Key": []
+          }
+        ]
+      }
+    },
     "/laporanGejala/api/create": {
       "post": {
         "tags": ["Pasien - Laporan Gejala"],
