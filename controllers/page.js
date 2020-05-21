@@ -1,4 +1,5 @@
 const moment = require("moment")
+const user = require("../models/user")
 const kebutuhan = require("../models/kebutuhan")
 const pasienCovid = require("../models/pasienCovid")
 const dokter = require("../models/dokter")
@@ -103,6 +104,19 @@ exports.pasienCovidDetailPage = async (req, res) => {
 }
 
 // Edit
+exports.editUser = (req, res) => {
+  console.log(req.session.username)
+  user.findOne({ username: req.session.username }, (error, doc) => {
+    res.render("edit/edit-user", {
+      title: "Edit profil",
+      isLoggedIn: req.session.isLoggedIn,
+      username: req.session.username,
+      data: doc,
+      success_message: req.flash("success-update")
+    })
+  })
+}
+
 exports.editPasienCOVID = async (req, res) => {
   const doctors = await dokter.find()
   pasienCovid.findById(req.params.id, (err, doc) => {

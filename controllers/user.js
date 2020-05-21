@@ -95,6 +95,22 @@ exports.createUser = (req, res) => {
   })
 }
 
+exports.update = (req, res) => {
+  user.findOneAndUpdate(
+    { username: req.session.username },
+    req.body,
+    { new: true },
+    (error, doc) => {
+      if (error) res.redirect("/page/edit-user-page")
+      else {
+        req.session.username = doc.username
+        req.flash("success-update", "User updated")
+        res.redirect("/page/edit-user-page")
+      }
+    }
+  )
+}
+
 exports.apiLogin = (req, res) => {
   user.findOne(
     {
