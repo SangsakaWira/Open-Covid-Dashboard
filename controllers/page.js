@@ -105,7 +105,6 @@ exports.pasienCovidDetailPage = async (req, res) => {
 
 // Edit
 exports.editUser = (req, res) => {
-  console.log(req.session.username)
   user.findOne({ username: req.session.username }, (error, doc) => {
     res.render("edit/edit-user", {
       title: "Edit profil",
